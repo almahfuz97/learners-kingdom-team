@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import RecentlyAddedCard from "./RecentlyAddedCard";
 
 export default class Responsive extends Component {
     render() {
         const settings = {
-            dots: false,
+            dots: true,
             infinite: true,
             speed: 500,
             slidesToShow: 4,
@@ -39,17 +41,17 @@ export default class Responsive extends Component {
             ]
         };
         return (
-            <div>
+            <div className="w-11/12 mx-auto">
                 <h2 className="text-2xl font-bold my-8" > New Books Releases </h2>
+
                 <Slider {...settings}>
                     {
 
-                        [1, 2, 3, 4, 5, 6, 7].map(card => <RecentlyAddedCard></RecentlyAddedCard>)
+                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(card => <RecentlyAddedCard></RecentlyAddedCard>)
                     }
-
-
                 </Slider>
             </div>
+
         );
     }
 }
