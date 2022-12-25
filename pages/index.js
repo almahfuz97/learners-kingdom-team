@@ -17,8 +17,6 @@ export default function Home() {
       <Banner />
       <RecentlyAdded />
       <Pricing />
-
-
       <NewsLetter />
       <Footer />
     </div>
