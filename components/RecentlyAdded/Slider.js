@@ -4,8 +4,8 @@ import RecentlyAddedCard from "./RecentlyAddedCard";
 
 export default class Responsive extends Component {
     render() {
-        const settings = {
-            dots: false,
+        let settings = {
+            dots: true,
             infinite: true,
             speed: 500,
             slidesToShow: 4,
@@ -40,14 +40,15 @@ export default class Responsive extends Component {
         };
         return (
             <div>
-                <h2 className="text-2xl font-bold my-8" > New Books Releases </h2>
+                <h2> Responsive </h2>
                 <Slider {...settings}>
-                    {
-
-                        [1, 2, 3, 4, 5, 6, 7].map(card => <RecentlyAddedCard></RecentlyAddedCard>)
-                    }
-
-
+                    <RecentlyAddedCard></RecentlyAddedCard>
+                    <RecentlyAddedCard></RecentlyAddedCard>
+                    <RecentlyAddedCard></RecentlyAddedCard>
+                    <RecentlyAddedCard></RecentlyAddedCard>
+                    <RecentlyAddedCard></RecentlyAddedCard>
+                    <RecentlyAddedCard></RecentlyAddedCard>
+                    <RecentlyAddedCard></RecentlyAddedCard>
                 </Slider>
             </div>
         );
