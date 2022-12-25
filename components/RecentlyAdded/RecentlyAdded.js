@@ -9,6 +9,8 @@ const RecentlyAdded = () => {
                 <RecentlyAddedCard />
                 <RecentlyAddedCard />
                 <RecentlyAddedCard />
+                <RecentlyAddedCard />
+                <RecentlyAddedCard />
 
             </div>
         </div>
