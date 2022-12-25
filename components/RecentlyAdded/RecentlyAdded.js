@@ -5,20 +5,27 @@ import Slider from "react-slick";
 import RecentlyAddedCard from "./RecentlyAddedCard";
 
 export default class Responsive extends Component {
+
     render() {
+
+
+
+
         const settings = {
-            dots: true,
+            dots: false,
             infinite: true,
-            speed: 500,
+            centerMode: true,
+            speed: 1000,
             slidesToShow: 4,
             slidesToScroll: 4,
+            autoplay: true,
             initialSlide: 0,
             responsive: [
                 {
                     breakpoint: 1024,
                     settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
                         infinite: true,
                         dots: true
                     }
@@ -26,23 +33,27 @@ export default class Responsive extends Component {
                 {
                     breakpoint: 600,
                     settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                        initialSlide: 2
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        initialSlide: 2,
+                        infinite: true
                     }
                 },
                 {
                     breakpoint: 480,
                     settings: {
                         slidesToShow: 1,
-                        slidesToScroll: 1
+                        slidesToScroll: 1,
+                        infinite: true
                     }
                 }
             ]
         };
         return (
             <div className="w-11/12 mx-auto">
+
                 <h2 className="text-2xl font-bold my-8" > New Books Releases </h2>
+
 
                 <Slider {...settings}>
                     {
