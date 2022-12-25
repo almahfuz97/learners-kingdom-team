@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 import Banner from '../components/Banner/Banner'
 import NewsLetter from '../components/NewsLetter/NewsLetter'
+import RecentlyAdded from '../components/RecentlyAdded/RecentlyAdded'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,6 +15,7 @@ export default function Home() {
     <div>
       <Navbar />
       <Banner />
+      <RecentlyAdded />
       <NewsLetter />
       <Footer />
     </div>
