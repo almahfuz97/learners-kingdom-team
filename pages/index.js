@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
+import Banner from '../components/Banner/Banner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <div>
       <Navbar />
+      <Banner />
       <Footer />
     </div>
   )
