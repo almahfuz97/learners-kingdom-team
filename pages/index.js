@@ -16,7 +16,9 @@ export default function Home() {
       <Navbar />
       <Banner />
       <RecentlyAdded />
-      <Pricing/>
+      <Pricing />
+
+
       <NewsLetter />
       <Footer />
     </div>
