@@ -1,6 +1,6 @@
 const FAQ = () => {
 	return (
-		<div className="mx-8 mt-2">
+		<div className="mx-8 my-16">
 			<h1 className="text-3xl text-primary_color font-bold text-center my-4">
 				Frequently Asked Questions
 			</h1>
