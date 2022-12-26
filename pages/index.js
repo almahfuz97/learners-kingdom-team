@@ -8,6 +8,7 @@ import NewsLetter from '../components/NewsLetter/NewsLetter'
 import RecentlyAdded from '../components/RecentlyAdded/RecentlyAdded'
 import Pricing from '../components/Pricing/Pricing'
 import Review from '../components/Review/Review'
+import PopularBooksContainer from '../components/PopularBooks/PopularBooksContainer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,9 @@ export default function Home() {
       <Navbar />
       <Banner />
       <RecentlyAdded />
-      <Review/>
+      <PopularBooksContainer />
+      <Review />
+
       <Pricing />
       <NewsLetter />
       <Footer />
