@@ -2,9 +2,9 @@ import FeaturedCard from "./FeaturedCard";
 
 const FeaturedCategory = () => {
     return (
-        <div className="w-11/12 mx-auto">
-            <h2 className="text-2xl font-bold my-8" >Features Category</h2>
-            <div className="grid lg:grid-cols-4 mx-auto gap-10 w-9/12">
+        <div className="w-11/12 mx-auto my-16">
+            <h2 className="text-3xl mb-8 text-primary_color font-bold text-center my-2" >Features Category</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto gap-10 w-9/12">
 
                 <FeaturedCard></FeaturedCard>
 

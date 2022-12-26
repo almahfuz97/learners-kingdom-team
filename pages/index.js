@@ -10,6 +10,7 @@ import Pricing from '../components/Pricing/Pricing'
 import Review from '../components/Review/Review'
 import PopularBooksContainer from '../components/PopularBooks/PopularBooksContainer'
 import FAQ from '../components/FAQ/FAQ'
+import FeaturedCategory from '../components/FeaturedCategory/FeaturedCategory'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,6 +25,7 @@ export default function Home() {
 
       <Navbar />
       <Banner />
+      <FeaturedCategory />
       <RecentlyAdded />
       <PopularBooksContainer />
       <Review />
