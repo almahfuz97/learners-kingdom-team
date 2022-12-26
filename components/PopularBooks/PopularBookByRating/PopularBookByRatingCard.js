@@ -53,6 +53,10 @@ const PopularBookByRatingCard = () => {
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit.
 					Non cumque facere perferendis voluptates nam officia...
 				</p>
+
+				<h3 className="text-primary_color font-medium text-lg my-1">
+					Price: <span className="text-blue-600">$150</span>
+				</h3>
 			</div>
 			<div
 				id="actions"
