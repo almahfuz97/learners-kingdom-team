@@ -62,9 +62,9 @@ export default class Responsive extends Component {
         <div className="w-11/12 mx-auto">
 
                
-            <h1 className="text-center font-bold text-2xl text-primary_color">Our Customers Reviews</h1>
+            <h1 className="text-2xl font-bold my-8">Our Learner's Feedback</h1>
 
-            <div className="bg-slate-500">
+            
                 <div >
                     <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color" onClick={this.previous}>
 
@@ -79,7 +79,7 @@ export default class Responsive extends Component {
                         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(review => <ReviewCard key={review.id} props={review}></ReviewCard>)
                      }
                 </Slider>
-            </div>
+           
         </div>
 
         );
