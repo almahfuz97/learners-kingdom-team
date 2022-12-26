@@ -59,28 +59,30 @@ export default class Responsive extends Component {
             ]
         };
         return (
-        <div className="w-11/12 mx-auto">
+            <div className="w-11/12 mx-auto my-16">
 
-               
-            <h1 className="text-2xl font-bold my-8">Our Learner's Feedback</h1>
 
-            
-                <div >
-                    <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color" onClick={this.previous}>
+                <h1 className="text-3xl mb-8 text-primary_color font-bold text-center">Our Learner's Feedback</h1>
 
-                    <img src="/left-arrow.svg" alt="book" class="w-8" />
+
+                <div className=" relative" >
+                    <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color absolute top-1/2 z-10 -translate-x-8" onClick={this.previous}>
+
+                        <img src="/left-arrow.svg" alt="book" class="w-8" />
                     </button>
-                    <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color" onClick={this.next}>
-                    <img src="/right-arrow.svg" alt="book" className="w-8"/></button>
-                </div>
-                <Slider  ref={c => (this.slider = c)} {...settings}>
-                    {
+                    <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color absolute top-1/2 z-10 right-0 translate-x-8" onClick={this.next}>
+                        <img src="/right-arrow.svg" alt="book" className="w-8" /></button>
+                    <Slider ref={c => (this.slider = c)} {...settings}>
+                        {
 
-                        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(review => <ReviewCard key={review.id} props={review}></ReviewCard>)
-                     }
-                </Slider>
-           
-        </div>
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(review => <ReviewCard key={review.id} props={review}></ReviewCard>)
+                        }
+                    </Slider>
+
+                </div>
+
+
+            </div>
 
         );
     }
