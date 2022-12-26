@@ -1,15 +1,15 @@
 const PopularBookByRatingCard = () => {
 	return (
-		<div className="p-3 rounded-md shadow-md bg-red-50 dark:bg-gray-900 dark:text-gray-50 hover:scale-105 duration-500">
+		<div className="p-3 rounded-md shadow-md hover:scale-[1.03] duration-500">
 			<div id="image">
 				<img
 					src="/advertise-demo.jpg"
-					className="object-cover object-center w-full rounded-md h-80 dark:bg-gray-500"
+					className="object-cover object-center w-full rounded-md h-80"
 				/>
 			</div>
 			<div
 				id="information"
-				className="flex items-center justify-between mt-2"
+				className="flex items-center justify-between mt-4"
 			>
 				<div>
 					<h1 className="text-xl font-bold text-primary_color">
@@ -60,7 +60,7 @@ const PopularBookByRatingCard = () => {
 			</div>
 			<div
 				id="actions"
-				className="mt-2 flex items-center justify-between text-white"
+				className="mt-4 flex items-center justify-between text-white"
 			>
 				<button className="bg-secondary_color px-3 py-2 rounded-md font-medium text-lg">
 					Details
