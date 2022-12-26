@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import RecentlyAddedCard from "./RecentlyAddedCard";
+import FeaturedCategory from "../FeaturedCategory/FeaturedCategory";
 
 export default class Responsive extends Component {
 

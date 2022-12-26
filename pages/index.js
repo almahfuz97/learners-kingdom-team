@@ -17,7 +17,7 @@ export default function Home() {
       <Navbar />
       <Banner />
       <RecentlyAdded />
-      <Review/>
+      <Review />
       <Pricing />
       <NewsLetter />
       <Footer />
