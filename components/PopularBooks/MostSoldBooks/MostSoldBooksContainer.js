@@ -2,7 +2,7 @@ import MostSoldBookCard from './MostSoldBookCard';
 
 const MostSoldBooksContainer = () => {
 	return (
-		<div className="mx-8 my-16">
+		<div className="mx-8 my-20">
 			<h1 className="text-3xl mb-8 text-primary_color font-bold text-center my-2">
 				Most Sold Books
 			</h1>
