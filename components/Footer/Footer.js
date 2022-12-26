@@ -2,18 +2,17 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer aria-label="Site Footer">
+        <footer aria-label="Site Footer" className='mt-20 border bg-slate-700'>
             <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="flex justify-center text-teal-600">
                     <h1><span className='text-xl  md:text-2xl text-primary_color font-bold uppercase'>Learner's</span> <span className='text-xl md:text-2xl text-secondary_color font-bold uppercase'>Kingdom</span></h1>
                 </div>
 
-                <p className="mx-auto mt-6 max-w-md text-center leading-relaxed ">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-                    consequuntur amet culpa cum itaque neque.
+                <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-white opacity-70 text-xs">
+                    The more you read, the more you grow. Find your desired books in one place.
                 </p>
 
-                <nav aria-label="Footer Nav" className="mt-12">
+                <nav aria-label="Footer Nav" className="mt-12 text-white">
                     <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
                         <li>
                             <a className=" transition hover:text-primary_color" href="/">
@@ -53,7 +52,7 @@ const Footer = () => {
                     </ul>
                 </nav>
 
-                <ul className="mt-12 flex justify-center gap-6 md:gap-8">
+                <ul className="mt-12 flex justify-center gap-6 md:gap-8 text-white">
                     <li className='hover:scale-110'>
                         <a href="/" rel="noreferrer" target="_blank" className="text-primary_color/90 transition hover:text-primary_color">
                             <span className="sr-only">Facebook</span>
@@ -125,7 +124,7 @@ const Footer = () => {
                     </li>
                 </ul>
             </div>
-            <div className="border-t border-primary_color p-6">
+            <div className="border-t border-primary_color p-6 text-white">
                 <div className="text-center sm:flex sm:justify-between sm:text-left">
                     <p className="text-sm ">
                         <a className="inline-block text-teal-600 underline transition hover:text-primary_color" href="/">
