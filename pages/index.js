@@ -20,7 +20,6 @@ export default function Home() {
       <RecentlyAdded />
       <PopularBooksContainer />
       <Review />
-
       <Pricing />
       <NewsLetter />
       <Footer />

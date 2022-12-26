@@ -60,7 +60,7 @@ export default class Responsive extends Component {
             ]
         };
         return (
-            <div className="w-11/12 mx-auto">
+            <div className="w-11/12 mx-auto my-16">
 
                 <h2 className="text-2xl font-bold my-8" > New Books Releases </h2>
 

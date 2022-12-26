@@ -13,9 +13,9 @@ const RecentlyAddedCard = () => {
                     </div>
                     <span className="block text-xs font-medium tracking-widest dark:text-violet-400">Author</span>
                 </div>
-                <p className="dark:text-gray-100">Book description Book description Book description Book description Book description Bookk</p>
+                <p className="dark:text-gray-100 opacity-50 text-xs">Book description Book description Book description Book description Book description Bookk</p>
 
-                <div className="flex justify-between">
+                <div className="flex justify-between mt-6 text-white">
                     <button type="button" className="px-8 py-3 font-semibold rounded dark:border-gray-100 dark:text-gray-100 bg-primary_color hover:bg-secondary_color">Details</button>
 
                     <button type="button" className=" bg-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded dark:border-gray-100 dark:text-gray-100">Read</button>
