@@ -1,10 +1,10 @@
 const MostSoldBookCard = () => {
 	return (
-		<div className="p-3 rounded-md shadow-md bg-red-50 dark:bg-gray-900 dark:text-gray-50 hover:scale-105 duration-500">
+		<div className="p-3 rounded-md shadow-md bg-red-50   hover:scale-105 duration-500">
 			<div id="image">
 				<img
 					src="/advertise-demo.jpg"
-					className="object-cover object-center w-full rounded-md h-80 dark:bg-gray-500"
+					className="object-cover object-center w-full rounded-md h-80"
 				/>
 			</div>
 			<div
