@@ -42,7 +42,7 @@ const MostSoldBookCard = () => {
 			</div>
 			<div
 				id="actions"
-				className="mt-2 flex items-center justify-between"
+				className="mt-2 flex items-center justify-between text-white"
 			>
 				<button className="bg-secondary_color px-3 py-2 rounded-md font-medium text-lg">
 					Details
