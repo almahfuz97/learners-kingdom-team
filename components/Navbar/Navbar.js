@@ -15,9 +15,9 @@ export default function Navbar() {
                 </div>
                 <div>
                     <ul className='hidden md:flex gap-4'>
-                        <Link className=' hover:text-primary_color' href="#"><li>Home</li></Link>
-                        <Link className=' hover:text-primary_color' href="#"><li>About Us</li></Link>
-                        <Link className=' hover:text-primary_color' href="#"><li>Sign Up</li></Link>
+                        <Link className=' hover:text-primary_color' href="/"><li>Home</li></Link>
+                        <Link className=' hover:text-primary_color' href="/about"><li>About Us</li></Link>
+                        <Link className=' hover:text-primary_color' href="/"><li>Sign Up</li></Link>
                     </ul>
                     <div className='block md:hidden hover:cursor-pointer' onClick={handleToggle} >
                         <div className={` h-1 w-6 mb-1  bg-primary_color ${toggle ? ' origin-right rotate-45 translate-x-2 translate-y-2' : 'rotate-0'}`}></div>
