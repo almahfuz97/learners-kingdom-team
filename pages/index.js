@@ -22,8 +22,6 @@ export default function Home() {
           Learner's Kingdom
         </title>
       </Head>
-
-      <Navbar />
       <Banner />
       <FeaturedCategory />
       <RecentlyAdded />
@@ -32,7 +30,6 @@ export default function Home() {
       <Pricing />
       <FAQ />
       <NewsLetter />
-      <Footer />
     </div>
   )
 }
