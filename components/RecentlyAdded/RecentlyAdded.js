@@ -27,10 +27,10 @@ export default class Responsive extends Component {
             dots: false,
             infinite: true,
             speed: 1000,
-            slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToShow: 3,
+            slidesToScroll: 3,
             autoplay: true,
-            initialSlide: 4,
+            initialSlide: 3,
             responsive: [
                 {
                     breakpoint: 1024,
@@ -42,16 +42,16 @@ export default class Responsive extends Component {
                     }
                 },
                 {
-                    breakpoint: 600,
+                    breakpoint: 900,
                     settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
                         initialSlide: 2,
                         infinite: true
                     }
                 },
                 {
-                    breakpoint: 480,
+                    breakpoint: 600,
                     settings: {
                         slidesToShow: 1,
                         slidesToScroll: 1,

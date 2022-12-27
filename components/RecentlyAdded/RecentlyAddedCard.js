@@ -1,6 +1,6 @@
 const RecentlyAddedCard = () => {
     return (
-        <div class=" lg:mx-2 lg:my-8 max-w-xs bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+        <div class=" mx-2 lg:my-8 w-xs bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl ">
 
             <img src="/books.png" alt="book" className="object-cover rounded-xl" />
             <div class="px-4 py-3">
