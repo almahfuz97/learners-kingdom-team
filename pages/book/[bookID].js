@@ -1,11 +1,13 @@
 import SimilarBooksCard from "../../components/SimilarBooksCard/SimilarBooksCard";
+import { getBooks, getCategoryWiseBooks, getSingleBook } from "../api/util/getDataFromDB";
 
-const BookDetails = ({ book }) => {
+const BookDetails = ({ book, singleCategory }) => {
+    console.log(book)
     return (
         <section className="container max-w-screen-lg mx-auto mt-10">
             <div className="md:flex gap-6">
                 <div className="max-w-xs mx-auto sm:max-w-none p-6 border border-primary_color rounded-lg mb-4 md:mb-0">
-                    <img src={book.picture} alt="" className="mx-auto w-full sm:max-w-xs md:max-w-md" />
+                    <img src={book?.picture} alt="" className="mx-auto w-full sm:max-w-xs md:max-w-md" />
                 </div>
                 <div className="p-6 border border-primary_color rounded-lg flex-1">
                     <h1 className="text-3xl font-bold mb-2">{book.name}</h1>
@@ -16,17 +18,15 @@ const BookDetails = ({ book }) => {
                     <h4 className="text-xl font-medium my-4"><span className="text-gray-600">Price: </span><span className="text-rose-600">${book.price}</span></h4>
                     <p className="text-justify"><span className="text-gray-600 font-medium">Description:</span> {book.description}</p>
                     <button className="text-white bg-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded my-6">Add To Cart</button>
-                    <p className="mb-1"><span className="text-gray-600 font-medium">Category: </span>{book.category}</p>
-                    <p><span className="text-gray-600 font-medium">Tags: </span>{book.tags.join(', ')}</p>
+                    <p className="mb-1"><span className="text-gray-600 font-medium">Category: </span>{book?.categoryName}</p>
+                    {/* <p><span className="text-gray-600 font-medium">Tags: </span>{book.tags.join(', ')}</p> */}
                 </div>
             </div>
             <div className="p-6 border border-primary_color rounded-lg mt-8">
                 <h2 className="text-2xl font-bold mb-6">Similar books</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     {
-                        [...Array(4)].map((_, index) =>
-                            <SimilarBooksCard key={index}></SimilarBooksCard>
-                        )
+                        (singleCategory.filter(similar => similar._id !== book._id)).map(simBook => <SimilarBooksCard key={simBook._id} book={simBook}></SimilarBooksCard>)
                     }
                 </div>
             </div>
@@ -35,25 +35,29 @@ const BookDetails = ({ book }) => {
 };
 
 export const getStaticProps = async ({ params }) => {
-    const res = await fetch(`http://localhost:3000/api/books/${params.bookID}`)
-    const data = await res.json();
+    const book = await getSingleBook(params.bookID.split(',')[0]);
+    console.log('hehe', params)
+    const singleCategory = await getCategoryWiseBooks(params.bookID.split(',')[1])
+    console.log(params.bookID)
 
     return {
         props: {
-            book: data
+            book: JSON.parse(JSON.stringify(book)),
+            singleCategory: JSON.parse(JSON.stringify(singleCategory)),
         }
     }
 }
 
 export const getStaticPaths = async () => {
-    const res = await fetch("http://localhost:3000/api/books");
-    const books = await res.json();
+    const books = await getBooks();
 
     const paths = books.map(book => {
         return {
             params: {
-                bookID: `${book._id}`
-            }
+                bookID: `${book._id},${book.categoryID}`,
+            },
+
+
         }
     })
 

@@ -25,6 +25,13 @@ export async function getBooks() {
     const result = await db.collection('books').find(query).toArray();
     return result
 }
+export async function getSingleBook(id) {
+    console.log(id)
+    const client = await clientPromise;
+    const db = await client.db("learners-kingdom");
+    const result = await db.collection('books').findOne({ _id: ObjectId(id) });
+    return result;
+}
 export async function getCategoryWiseBooks(id) {
     const client = await clientPromise;
     const db = client.db("learners-kingdom");
