@@ -1,7 +1,26 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form';
+import SearchCard from '../SearchInput/SearchCard';
+import SearchInput from '../SearchInput/SearchInput';
 
-export default function Banner() {
+export default function Banner({ books }) {
+    console.log(books)
+    const [text, setText] = useState('');
+    const { register, handleSubmit, watch } = useForm();
+    const [searchedBook, setSearchedBook] = useState();
+
+    console.log(searchedBook);
+    useEffect(() => {
+        const searchText = watch('search');
+        const result = books.filter(book => book.bookName.toLowerCase().includes(searchText.toLowerCase()));
+        if (watch('search') === '') setSearchedBook(null);
+        else {
+            setSearchedBook(result);
+        }
+
+    }, [watch('search')])
+
     return (
         <div className=' relative img-gradient'>
             <Image src={'https://i.ibb.co/KVqN4n7/3025.jpg'} width={2000} height={800} className='w-full h-full' alt='' />
@@ -14,10 +33,9 @@ export default function Banner() {
 
             <div className=' absolute w-full top-[40%]  z-10'>
                 <div className=' flex justify-center'>
-                    <div className=' flex'>
-                        <style jsx>
-                            {
-                                `
+                    <style jsx>
+                        {
+                            `
                         .search-animation {
                             
                             animation-name: search-anim;
@@ -34,17 +52,11 @@ export default function Banner() {
                              }
                           }
                         `
-                            }
-                        </style>
-                        <input placeholder=' Search books' type="text" className='border border-primary_color focus:border-r-0 focus:border-secondary_color rounded-lg rounded-r-none p-2 lg:p-4 lg:min-w-[400px] max-h-[40px] lg:max-h-[50px] outline-none' />
-
-                        <div className=' bg-primary_color rounded-r cursor-pointer hover:shadow px-2  max-h-[40px] lg:max-h-[50px]'>
-                            <div className='search-animation '>
-                                <Image src={'/search-white.png'} width={45} height={45} className='p-1 search-animation ' alt=''></Image>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    </style>
+                    <SearchInput register={register} watch={watch} searchedBook={searchedBook} />
                 </div>
+
             </div>
 
         </div >

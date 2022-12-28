@@ -11,11 +11,13 @@ import Review from '../components/Review/Review'
 import PopularBooksContainer from '../components/PopularBooks/PopularBooksContainer'
 import FAQ from '../components/FAQ/FAQ'
 import FeaturedCategory from '../components/FeaturedCategory/FeaturedCategory'
-import getCategory from '../util/getCategory'
+import { getBooks, getCategories } from './api/util/getDataFromDB'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ categories }) {
+export default function Home({ categories, books }) {
+  console.log(categories)
   return (
     <div>
       <Head>
@@ -23,7 +25,7 @@ export default function Home({ categories }) {
           Learner's Kingdom
         </title>
       </Head>
-      <Banner />
+      <Banner books={books} />
       <FeaturedCategory categories={categories} />
       <RecentlyAdded />
       <PopularBooksContainer />
@@ -35,7 +37,14 @@ export default function Home({ categories }) {
   )
 }
 
-
 export async function getServerSideProps() {
-  return getCategory();
+  const categories = await getCategories();
+  const books = await getBooks();
+  return {
+    props: {
+      categories: JSON.parse(JSON.stringify(categories)),
+      books: JSON.parse(JSON.stringify(books))
+    }
+  }
+
 }

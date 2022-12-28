@@ -1,5 +1,5 @@
 import { ObjectId } from "bson";
-import clientPromise from "../../../util/mongodb";
+import clientPromise from "../util/mongodb";
 
 export default async function handler(req, res) {
 

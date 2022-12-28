@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Loading from '../../components/Loader/Loading';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
 import getCategory from '../../util/getCategory';
-import clientPromise from '../../util/mongodb';
+import clientPromise from '../api/util/mongodb';
 
 
 const Category = ({ books, categoryName, categories, loadingData }) => {

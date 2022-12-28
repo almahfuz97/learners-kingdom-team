@@ -1,5 +1,6 @@
+import clientPromise from '../util/mongodb';
+
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import clientPromise from '../../../util/mongodb';
 var CryptoJS = require('crypto-js');
 
 export default async function handler(req, res) {
