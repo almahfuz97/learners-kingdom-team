@@ -6,6 +6,9 @@ var CryptoJS = require("crypto-js");
 export default async function handler(req, res) {
 
     if (req.method === 'POST') {
+        const client = await clientPromise;
+        const db = client.db("learners-kingdom");
+
         if (req.body) {
             const { name, email, phone, password } = req.body;
 
@@ -25,10 +28,8 @@ export default async function handler(req, res) {
                 phone,
                 encrypted_password
             }
-            const client = await clientPromise;
-            const db = client.db("learners-kingdom");
+
             const result = await db.collection('users').insertOne(userInfo);
-            console.log(result)
             res.status(200).json({ status: true, result })
 
         }
