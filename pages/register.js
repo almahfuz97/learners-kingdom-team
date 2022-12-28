@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function Register() {
+
     return (
         <div className=' flex justify-center my-20 mx-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-secondary_color">
@@ -13,7 +14,11 @@ export default function Register() {
                     </div>
                     <div className="space-y-1 text-sm">
                         <label for="email" className="block ">Email</label>
-                        <input type="text" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        <input type="email" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label for="email" className="block ">Phone</label>
+                        <input type="number" name="phone" id="username" placeholder="Phone" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label for="password" className="block ">Password</label>

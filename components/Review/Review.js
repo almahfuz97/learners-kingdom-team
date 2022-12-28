@@ -68,14 +68,14 @@ export default class Responsive extends Component {
                 <div className=" relative" >
                     <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color absolute top-1/2 z-10 -translate-x-8" onClick={this.previous}>
 
-                        <img src="/left-arrow.svg" alt="book" class="w-8" />
+                        <img src="/left-arrow.svg" alt="book" className="w-8" />
                     </button>
                     <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color absolute top-1/2 z-10 right-0 translate-x-8" onClick={this.next}>
                         <img src="/right-arrow.svg" alt="book" className="w-8" /></button>
                     <Slider ref={c => (this.slider = c)} {...settings}>
                         {
 
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(review => <ReviewCard key={review.id} props={review}></ReviewCard>)
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((review, index) => <ReviewCard key={index} props={review}></ReviewCard>)
                         }
                     </Slider>
 

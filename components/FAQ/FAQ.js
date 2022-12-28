@@ -7,7 +7,7 @@ const FAQ = () => {
 			<div className="space-y-4">
 				{[...Array(3)].map((_, index) => (
 					<details
-						kye={index}
+						key={index}
 						className="w-full border rounded-lg focus:border-primary_color duration-500"
 					>
 						<summary className="px-4 py-3 border border-primary_color focus:outline-none rounded-xl cursor-pointer font-medium text-primary_color">

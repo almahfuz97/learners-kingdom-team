@@ -1,24 +1,71 @@
 import Link from 'next/link'
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useState } from 'react'
+import { useForm } from "react-hook-form";
+import Loading from '../components/Loader/Loading';
 
 export default function Login() {
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
+
+    const onSubmit = async (data) => {
+        setIsLoading(true)
+        setError('')
+
+        const res = await fetch(`${process.env.URL}/api/user/login`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        console.log(result)
+        if (result.token) {
+            localStorage.setItem('lk-token', result.token);
+            router.push('/')
+        }
+        else {
+            setError(result.message);
+        }
+        setIsLoading(false)
+    }
     return (
         <div className=' flex justify-center my-20 mx-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-secondary_color">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
-                <form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
-                        <label for="email" className="block ">Email</label>
-                        <input type="text" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        <p className=' text-red-500 text-xs'>
+                            {error}
+                        </p>
+                        <label htmlFor="email" className="block ">Email</label>
+                        <input type="text" {...register('email', { required: "This field is required!" })} id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        {
+                            errors?.email && <p className=' text-red-500 text-xs'>{errors.email.message}</p>
+                        }
                     </div>
                     <div className="space-y-1 text-sm">
-                        <label for="password" className="block ">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        <label htmlFor="password" className="block ">Password</label>
+                        <input type="password" {...register('password', { required: 'Enter your password' })} id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        {
+                            errors?.password && <p className=' text-red-500 text-xs'>{errors.password.message}</p>
+                        }
                         <div className="flex justify-end text-xs ">
                             <a rel="noopener noreferrer" href="#">Forgot Password?</a>
                         </div>
                     </div>
-                    <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign in</button>
+                    {
+                        isLoading
+                            ? <div className=' flex justify-center bg-primary_color w-full p-3 text-center rounded-sm '>
+                                <Loading />
+                            </div>
+                            :
+                            <button className="block w-full p-3 text-center rounded-md bg-primary_color">Sign in</button>
+
+                    }
                 </form>
                 <div className="flex items-center pt-4 space-x-1">
                     <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
