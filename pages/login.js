@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import Loading from '../components/Loader/Loading';
 
+
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [error, setError] = useState('');
@@ -33,6 +34,7 @@ export default function Login() {
         setIsLoading(false)
     }
     return (
+        
         <div className=' flex justify-center my-20 mx-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-secondary_color">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -94,5 +96,6 @@ export default function Login() {
                 </p>
             </div>
         </div>
+        
     )
 }
