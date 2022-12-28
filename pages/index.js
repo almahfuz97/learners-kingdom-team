@@ -11,10 +11,11 @@ import Review from '../components/Review/Review'
 import PopularBooksContainer from '../components/PopularBooks/PopularBooksContainer'
 import FAQ from '../components/FAQ/FAQ'
 import FeaturedCategory from '../components/FeaturedCategory/FeaturedCategory'
+import getCategory from '../util/getCategory'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({ categories }) {
   return (
     <div>
       <Head>
@@ -23,7 +24,7 @@ export default function Home() {
         </title>
       </Head>
       <Banner />
-      <FeaturedCategory />
+      <FeaturedCategory categories={categories} />
       <RecentlyAdded />
       <PopularBooksContainer />
       <Review />
@@ -32,4 +33,9 @@ export default function Home() {
       <NewsLetter />
     </div>
   )
+}
+
+
+export async function getServerSideProps() {
+  return getCategory();
 }

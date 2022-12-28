@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import FeaturedCard from "./FeaturedCard";
 
-const FeaturedCategory = () => {
-
-    const [categories, SetCategories] = useState([])
-
-    useEffect(() => {
-        fetch('http://localhost:3000/api/categories')
-            .then(res => res.json())
-            .then(data => SetCategories(data))
-    }, [])
+const FeaturedCategory = ({ categories }) => {
 
     return (
         <div className="w-11/12 mx-auto my-20">
@@ -23,7 +15,7 @@ const FeaturedCategory = () => {
                     ></FeaturedCard>)
                 }
 
-                <div className="flex flex-col w-52 duration-300 hover:scale-110 hover:shadow-xl">
+                <div className="flex flex-col w-52">
                     <img src='/category/other.png' alt="" className=" mx-auto w-20 " />
                     <h2 className="text-2xl font-semibold text-center">Others</h2>
                 </div>
