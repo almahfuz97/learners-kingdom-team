@@ -4,7 +4,7 @@ import React from 'react'
 export default function Banner() {
     return (
         <div className=' relative img-gradient'>
-            <Image src={'https://i.ibb.co/KVqN4n7/3025.jpg'} width={2000} height={800} className='w-full h-full' />
+            <Image src={'https://i.ibb.co/KVqN4n7/3025.jpg'} width={2000} height={800} className='w-full h-full' alt='' />
             <div className=' absolute top-[15%] lg:top-[20%] w-full flex justify-center z-10'>
                 <div>
                     <h1 className=' text-center lg:text-3xl text-base font-bold text-white'>Welcome to <span className=' font-bold text-primary_color'>Learner's</span> <span className=' text-secondary_color font-bold'>Kingdom</span></h1>
@@ -40,13 +40,13 @@ export default function Banner() {
 
                         <div className=' bg-primary_color rounded-r cursor-pointer hover:shadow px-2  max-h-[40px] lg:max-h-[50px]'>
                             <div className='search-animation '>
-                                <Image src={'/search-white.png'} width={45} height={45} className='p-1 search-animation ' ></Image>
+                                <Image src={'/search-white.png'} width={45} height={45} className='p-1 search-animation ' alt=''></Image>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }

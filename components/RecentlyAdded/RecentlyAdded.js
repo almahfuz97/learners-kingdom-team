@@ -69,16 +69,16 @@ export default class Responsive extends Component {
 
                     <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color absolute top-1/2 z-10 -translate-x-8" onClick={this.previous}>
 
-                        <img src="/left-arrow.svg" alt="book" class="w-8" />
+                        <img src="/left-arrow.svg" alt="book" className="w-8" />
                     </button>
                     <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color  absolute top-1/2 z-10 right-0 translate-x-8" onClick={this.next}>
-                        <img src="/right-arrow.svg" alt="book" class="w-8" />
+                        <img src="/right-arrow.svg" alt="book" className="w-8" />
 
                     </button>
                     <Slider ref={c => (this.slider = c)} {...settings}>
                         {
 
-                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map(card => <RecentlyAddedCard></RecentlyAddedCard>)
+                            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((card, index) => <RecentlyAddedCard key={index}></RecentlyAddedCard>)
                         }
                     </Slider>
                 </div>
