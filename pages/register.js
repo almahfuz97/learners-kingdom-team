@@ -1,28 +1,77 @@
 import Link from 'next/link'
 import React from 'react'
-
+import { useForm } from "react-hook-form";
 export default function Register() {
-
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+      } = useForm();
+      const onSubmit = (data) => console.log(data);
     return (
         <div className=' flex justify-center my-20 mx-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-secondary_color">
                 <h1 className="text-2xl font-bold  text-center">Register</h1>
-                <form novalidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
                         <label for="email" className="block ">Name</label>
-                        <input type="text" name="username" id="username" placeholder="Name" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        <input type="text" name="username" id="username" placeholder="Name" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
+                        {...register("name", { required: true })} />
+                        <error className="text-red-500">
+                        {errors.name?.type === "required" && "Name is required"}
+            </error>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label for="email" className="block ">Email</label>
-                        <input type="email" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        <input type="email" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" 
+                        {...register("email", {
+                            required: true,
+                            pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+                          })}
+                        />
+                        <error className="text-red-500">
+                        {errors.email?.type === "required" && "Email is required"}
+                        {errors.email?.type === "pattern" &&
+                        "Entered email is in wrong format"}
+            </error>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label for="email" className="block ">Phone</label>
-                        <input type="number" name="phone" id="username" placeholder="Phone" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        <input type="number" name="phone" id="username" placeholder="Phone" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" 
+                        {...register("number", {
+                            minLength: 6,
+                            maxLength: 12,
+                          })}
+                        />
+                        <error className="text-red-500">
+                          {errors.number?.type === "minLength" &&
+                            "Entered number is less than 6 digits"}
+                          {errors.number?.type === "maxLength" &&
+                            "Entered number is more than 12 digits"}
+                        </error>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label for="email" className="block ">Address</label>
+                        <input type="text" name="username" id="username" placeholder="address" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
+                        {...register("address", { required: true })} />
+                        <error className="text-red-500">
+                        {errors.address?.type === "required" && "Address is required"}
+                        </error>
                     </div>
                     <div className="space-y-1 text-sm">
                         <label for="password" className="block ">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" />
+                        <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" {...register("password", {
+                         required: true,
+                        minLength: 5,
+                         maxLength: 20,
+                         })}
+                         />
+                    <error className="text-red-500">
+                     {errors.password?.type === "minLength" &&
+                        "Enter a password at least 5 characters"}
+                        {errors.password?.type === "maxLength" &&
+                             "Enter a password is not more than 20 characters"}
+                         </error>
                         <div className="flex justify-end text-xs ">
                             <Link rel="noopener noreferrer" href="#">Forgot Password?</Link>
                         </div>
