@@ -13,7 +13,7 @@ export default function Banner({ books }) {
     console.log(searchedBook);
     useEffect(() => {
         const searchText = watch('search');
-        const result = books.filter(book => book.bookName.toLowerCase().includes(searchText.toLowerCase()));
+        const result = books.filter(book => book.bookName.toLowerCase().includes(searchText.toLowerCase()) || book.authorName.toLowerCase().includes(searchText.toLowerCase()));
         if (watch('search') === '') setSearchedBook(null);
         else {
             setSearchedBook(result);
