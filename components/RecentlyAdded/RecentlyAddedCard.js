@@ -16,9 +16,9 @@ const RecentlyAddedCard = () => {
                 <p className=" opacity-50 text-xs">Book description Book description Book description Book description Book description Bookk</p>
 
                 <div className="flex justify-between mt-6 text-white">
-                    <button type="button" className="px-8 py-3 font-semibold rounded bg-primary_color hover:bg-secondary_color">Details</button>
+                    <button type="button" className="px-8 py-3 font-semibold rounded hover:bg-primary_color bg-secondary_color">Details</button>
 
-                    <button type="button" className=" bg-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded">Read</button>
+                    <button type="button" className="  hover:bg-primary_color bg-secondary_color px-8 py-3 font-semibold rounded">Add to Cart</button>
                 </div>
             </div>
 
