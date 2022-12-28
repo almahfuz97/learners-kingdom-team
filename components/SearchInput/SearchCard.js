@@ -4,6 +4,7 @@ export default function SearchCard({ book }) {
     return (
 
         <div className="p-2 border-b-2 py-3">
+
             <div className="flex space-x-2 ">
                 <img src={book.picture} alt="" className="  w-12 h-12 border  " />
                 <div className="flex flex-col">

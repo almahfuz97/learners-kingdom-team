@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import SearchCard from '../SearchInput/SearchCard';
@@ -9,7 +10,20 @@ export default function Banner({ books }) {
     const [text, setText] = useState('');
     const { register, handleSubmit, watch } = useForm();
     const [searchedBook, setSearchedBook] = useState();
+    const router = useRouter();
 
+    console.log("here", searchedBook)
+    const handleKeyUp = e => {
+        console.log(e.key)
+        if (e.key === 'Enter') {
+            router.push({
+                pathname: '/category',
+                query: {
+                    searchText: watch('search')
+                }
+            })
+        }
+    }
     console.log(searchedBook);
     useEffect(() => {
         const searchText = watch('search');
@@ -33,28 +47,8 @@ export default function Banner({ books }) {
 
             <div className=' absolute w-full top-[40%]  z-10'>
                 <div className=' flex justify-center'>
-                    <style jsx>
-                        {
-                            `
-                        .search-animation {
-                            
-                            animation-name: search-anim;
-                            animation-duration: 3s;
-                            animation-iteration-count: infinite;
-                          }
-                          
-                          @keyframes search-anim {
-                            0% {
-                                transform: rotate(0deg) translateX(5px) rotate(0deg);
-                             }
-                             100% {
-                                transform: rotate(360deg) translateX(5px) rotate(-360deg);
-                             }
-                          }
-                        `
-                        }
-                    </style>
-                    <SearchInput register={register} watch={watch} searchedBook={searchedBook} />
+
+                    <SearchInput handleKeyUp={handleKeyUp} register={register} watch={watch} searchedBook={searchedBook} />
                 </div>
 
             </div>
