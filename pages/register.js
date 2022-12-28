@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { useForm } from "react-hook-form";
+
 export default function Register() {
     const {
         register,
@@ -9,6 +10,7 @@ export default function Register() {
       } = useForm();
       const onSubmit = (data) => console.log(data);
     return (
+       
         <div className=' flex justify-center my-20 mx-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-secondary_color">
                 <h1 className="text-2xl font-bold  text-center">Register</h1>
@@ -105,5 +107,6 @@ export default function Register() {
                 </p>
             </div>
         </div>
+        
     )
 }
