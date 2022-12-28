@@ -1,54 +1,32 @@
+import { useEffect, useState } from "react";
 import FeaturedCard from "./FeaturedCard";
 
 const FeaturedCategory = () => {
+
+    const [categories, SetCategories] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:3000/api/categories')
+            .then(res => res.json())
+            .then(data => SetCategories(data))
+    }, [])
+
     return (
         <div className="w-11/12 mx-auto my-20">
             <h2 className="text-3xl mb-8 text-primary_color font-bold text-center my-2" >Features Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto gap-10 w-9/12">
 
-                <FeaturedCard></FeaturedCard>
+                {
+                    categories?.map(category => <FeaturedCard
+                        key={category._id}
+                        category={category}
+                    ></FeaturedCard>)
+                }
 
-
-                <div className="flex flex-col w-52">
-                    <img src="/category/classic.jpg" alt="" className=" mx-auto w-20 " />
-                    <h2 className="text-2xl font-semibold text-center">Classics</h2>
+                <div className="flex flex-col w-52 duration-300 hover:scale-110 hover:shadow-xl">
+                    <img src='/category/other.png' alt="" className=" mx-auto w-20 " />
+                    <h2 className="text-2xl font-semibold text-center">Others</h2>
                 </div>
-
-
-                <div className="flex flex-col w-52">
-                    <img src="/category/crime.jpg" alt="" className=" mx-auto w-20 " />
-                    <h2 className="text-2xl font-semibold text-center">Crime</h2>
-                </div>
-
-
-                <div className="flex flex-col w-52">
-                    <img src="/category/horror.jpg" alt="" className=" mx-auto w-20 " />
-                    <h2 className="text-2xl font-semibold text-center">Horror</h2>
-                </div>
-
-
-                <div className="flex flex-col w-52">
-                    <img src="/category/romance.jpg" alt="" className=" mx-auto w-20 " />
-                    <h2 className="text-2xl font-semibold text-center">Romance</h2>
-                </div>
-
-
-                <div className="flex flex-col w-52">
-                    <img src="/category/science.jpg" alt="" className=" mx-auto w-20 " />
-                    <h2 className="text-2xl font-semibold text-center">Science</h2>
-                </div>
-
-
-                <div className="flex flex-col w-52">
-                    <img src="/category/Thrillers.jpg" alt="" className=" mx-auto w-20" />
-                    <h2 className="text-2xl font-semibold text-center">Thrillers</h2>
-                </div>
-
-
-
-
-
-
 
 
             </div>
