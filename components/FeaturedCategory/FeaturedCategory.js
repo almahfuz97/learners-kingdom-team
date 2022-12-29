@@ -4,7 +4,7 @@ import FeaturedCard from "./FeaturedCard";
 const FeaturedCategory = ({ categories }) => {
 
     return (
-        <div className="w-11/12 mx-auto my-20">
+        <div className="mx-8 my-20">
             <h2 className="text-3xl mb-8 text-primary_color font-bold text-center my-2" >Features Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto gap-10 w-9/12">
 
