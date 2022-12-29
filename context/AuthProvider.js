@@ -12,33 +12,23 @@ export default function AuthProvider({ children }) {
         localStorage.removeItem('lk-token');
         setUser(null);
         setUserEmail('');
-        setToken('')
+        setToken('');
     }
+
+    useEffect(() => {
+        setToken(localStorage.getItem('lk-token'))
+    }, [userEmail])
 
     console.log(userEmail, 'userEmail')
     console.log(token, 'token')
     console.log(user, 'user')
 
     useEffect(() => {
-        console.log('ami useeffect er vitore')
-        setToken(localStorage.getItem('lk-token'));
-    }, [userEmail])
-
-    useEffect(() => {
-
         fetch(`${process.env.URL}/api/user/userInfo`, {
             headers: {
                 authorization: `bearer ${token}`
             }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    setUser(data.data);
-                }
-                setLoading(false);
-
-            })
             .catch(err => {
                 setLoading(false);
                 setUser();
@@ -59,4 +49,5 @@ export default function AuthProvider({ children }) {
             {children}
         </AuthContext.Provider>
     )
+
 }

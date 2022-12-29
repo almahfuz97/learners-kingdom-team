@@ -16,7 +16,7 @@ import { getBooks, getCategories, getMostRatedBooks, getMostSoldBooks, getRecent
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ categories, books, recentlyAdded, mostRatedBooks, mostSoldBooks, reviews }) {
-  console.log(categories)
+  // console.log(categories)
   return (
     <div>
       <Head>
