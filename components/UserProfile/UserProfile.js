@@ -1,6 +1,8 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import { AuthContext } from '/context/AuthProvider';
 const UserProfile = () => {
+  const {user} =  useContext(AuthContext);
+  console.log(user);
     return (
         <div className="grid grid-cols-6 m-6 mx-12">
             <div className="rounded-lg col-span-2 p-8 bg-primary_color mx-auto mr-4">
