@@ -6,7 +6,7 @@ export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [userEmail, setUserEmail] = useState('');
     const [token, setToken] = useState('');
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const logout = () => {
         localStorage.removeItem('lk-token');
@@ -24,21 +24,25 @@ export default function AuthProvider({ children }) {
     console.log(user, 'user')
 
     useEffect(() => {
-        fetch(`${process.env.URL}/api/user/userInfo`, {
-            headers: {
-                authorization: `bearer ${token}`
-            }
-        }).then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    setUser(data.data);
+        if (token) {
+            setLoading(true)
+
+            fetch(`${process.env.URL}/api/user/userInfo`, {
+                headers: {
+                    authorization: `bearer ${token}`
                 }
-                setLoading(false)
-            })
-            .catch(err => {
-                setLoading(false);
-                setUser();
-            })
+            }).then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        setUser(data.data);
+                    }
+                    setLoading(false)
+                })
+                .catch(err => {
+                    setLoading(false);
+                    setUser();
+                })
+        }
 
     }, [token])
 
