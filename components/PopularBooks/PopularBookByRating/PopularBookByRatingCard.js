@@ -52,7 +52,7 @@ const PopularBookByRatingCard = ({ book }) => {
 				</div>
 			</div>
 			<div id="description">
-				<p className=" text-base mb-2 opacity-50 break-words text-clip text-left">
+				<p className=" text-base mb-2 opacity-50 break-words ">
 					{book.description.slice(0, 100)}
 				</p>
 
