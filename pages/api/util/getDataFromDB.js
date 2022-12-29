@@ -57,7 +57,13 @@ export async function getCategoryWiseBooks(id) {
     const client = await clientPromise;
     const db = client.db("learners-kingdom");
     const result = await db.collection('books').find({ categoryID: id }).toArray();
-
+    // const categoryName = await db.collection('booksCategory').findOne({ _id: ObjectId(id) });
+    return result
+}
+export async function getReviews(id) {
+    const client = await clientPromise;
+    const db = client.db("learners-kingdom");
+    const result = await db.collection('reviews').find().sort({ createdAt: -1 }).toArray();
     // const categoryName = await db.collection('booksCategory').findOne({ _id: ObjectId(id) });
     return result
 }

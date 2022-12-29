@@ -11,13 +11,12 @@ import Review from '../components/Review/Review'
 import PopularBooksContainer from '../components/PopularBooks/PopularBooksContainer'
 import FAQ from '../components/FAQ/FAQ'
 import FeaturedCategory from '../components/FeaturedCategory/FeaturedCategory'
-import { getBooks, getCategories, getMostRatedBooks, getMostSoldBooks, getRecentlyAddedBooks } from './api/util/getDataFromDB'
-
+import { getBooks, getCategories, getMostRatedBooks, getMostSoldBooks, getRecentlyAddedBooks, getReviews } from './api/util/getDataFromDB'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ categories, books, recentlyAdded, mostRatedBooks, mostSoldBooks }) {
-  // console.log(categories)
+export default function Home({ categories, books, recentlyAdded, mostRatedBooks, mostSoldBooks, reviews }) {
+  console.log(categories)
   return (
     <div>
       <Head>
@@ -29,7 +28,7 @@ export default function Home({ categories, books, recentlyAdded, mostRatedBooks,
       <FeaturedCategory categories={categories} />
       <RecentlyAdded recentlyAdded={recentlyAdded} />
       <PopularBooksContainer mostRatedBooks={mostRatedBooks} mostSoldBooks={mostSoldBooks} />
-      {/* <Review /> */}
+      <Review reviews={reviews} />
       <Pricing />
       <FAQ />
       <NewsLetter />
@@ -43,6 +42,7 @@ export async function getServerSideProps() {
   const recentlyAdded = await getRecentlyAddedBooks();
   const mostRatedBooks = await getMostRatedBooks();
   const mostSoldBooks = await getMostSoldBooks();
+  const reviews = await getReviews();
   return {
     props: {
       categories: JSON.parse(JSON.stringify(categories)),
@@ -50,6 +50,7 @@ export async function getServerSideProps() {
       recentlyAdded: JSON.parse(JSON.stringify(recentlyAdded)),
       mostRatedBooks: JSON.parse(JSON.stringify(mostRatedBooks)),
       mostSoldBooks: JSON.parse(JSON.stringify(mostSoldBooks)),
+      reviews: JSON.parse(JSON.stringify(reviews)),
     }
   }
 

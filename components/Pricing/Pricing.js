@@ -3,7 +3,7 @@ const Pricing = () => {
   return (
     <div className="sans h-full my-20">
       <header className="flex flex-col items-center mb-6">
-        <h2 className="text-3xl mb-4 text-primary_color font-bold text-center my-2">Our Subscription Plan</h2>
+        <h2 className="text-3xl mb-2 text-primary_color font-bold text-center my-2">Our Subscription Plan</h2>
       </header>
       <section
         className="flex flex-col lg:flex-row  items-center lg:justify-center w-full lg:px-10 py-12 "

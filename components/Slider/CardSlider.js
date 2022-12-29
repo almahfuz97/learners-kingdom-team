@@ -2,8 +2,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import RecentlyAddedCard from "../RecentlyAdded/RecentlyAddedCard";
+import ReviewCard from "../Review/ReviewCard";
 
-export default function CardSlider({ data }) {
+export default function CardSlider({ data, which }) {
     let slider;
     const settings = {
         dots: false,
@@ -24,7 +25,7 @@ export default function CardSlider({ data }) {
                 }
             },
             {
-                breakpoint: 900,
+                breakpoint: 1023,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 2,
@@ -53,12 +54,17 @@ export default function CardSlider({ data }) {
                 <img src="/right-arrow.svg" alt="book" className="w-8" />
 
             </button>
-            <Slider ref={c => (slider = c)} {...settings}>
-                {
+            {
 
-                    data?.map((d, index) => <RecentlyAddedCard data={d} key={index}></RecentlyAddedCard>)
-                }
-            </Slider>
+                <Slider ref={c => (slider = c)} {...settings}>
+                    {
+                        which === 'review' ? data?.map((d, index) => <ReviewCard key={index + 'r'} review={d}></ReviewCard>) :
+
+                            data?.map((d, index) => <RecentlyAddedCard data={d} key={index}></RecentlyAddedCard>)
+                    }
+                </Slider>
+            }
+
         </div>
     )
 }
