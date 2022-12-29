@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 		const db = client.db('learners-kingdom');
 
 		if (req.body) {
-			const { name, email, phone, password } = req.body;
+			const { name, email, phone, password, address } = req.body;
 
 			const findUser = await db
 				.collection('users')
@@ -51,6 +51,7 @@ export default async function handler(req, res) {
 				email,
 				phone,
 				encrypted_password,
+				address
 			};
 
 			const result = await db.collection('users').insertOne(userInfo);

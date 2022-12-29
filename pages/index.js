@@ -13,7 +13,6 @@ import FAQ from '../components/FAQ/FAQ'
 import FeaturedCategory from '../components/FeaturedCategory/FeaturedCategory'
 import { getBooks, getCategories, getMostRatedBooks, getMostSoldBooks, getRecentlyAddedBooks, getReviews } from './api/util/getDataFromDB'
 
-
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ categories, books, recentlyAdded, mostRatedBooks, mostSoldBooks, reviews }) {

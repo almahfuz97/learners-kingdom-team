@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import clientPromise from "../../../util/mongodb";
+import clientPromise from "../util/mongodb";
 var CryptoJS = require("crypto-js");
 const jwt = require('jsonwebtoken');
 
