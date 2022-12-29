@@ -16,21 +16,13 @@ export default async function handler(req, res) {
         if (token) {
             jwt.verify(token, process.env.JWT_KEY, async function (err, decoded) {
 
-                if ((req.query.email === decoded)) {
+                const client = await clientPromise;
+                const db = client.db("learners-kingdom");
+                const query = { email: decoded }
+                const result = await db.collection('users').findOne(query);
+                delete result.encrypted_password;
 
-                    const client = await clientPromise;
-                    const db = client.db("learners-kingdom");
-                    const query = { email: decoded }
-                    const result = await db.collection('users').findOne(query);
-                    delete result.encrypted_password;
-
-                    res.status(200).json({ success: true, data: result })
-
-                }
-                else {
-                    return res.status(403).json({ success: false, message: 'forbidden' })
-                }
-
+                res.status(200).json({ success: true, data: result })
             })
                 ;
         }
