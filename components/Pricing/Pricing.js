@@ -6,7 +6,7 @@ const Pricing = () => {
         <h2 className="text-3xl mb-2 text-primary_color font-bold text-center my-2">Our Subscription Plan</h2>
       </header>
       <section
-        className="flex flex-col lg:flex-row  items-center lg:justify-center w-full lg:px-10 py-12 "
+        className="flex flex-col lg:flex-row items-center lg:justify-center w-full lg:px-10 py-12 "
       >
         <article
           // className="bg-secondary_color w-4/5 lg:w-custom mb-10 lg:px-4 py-10 hover:py-16 hover:bg-primary_color text-center text-primary-dark"
