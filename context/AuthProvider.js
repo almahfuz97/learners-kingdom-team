@@ -5,11 +5,7 @@ export const AuthContext = createContext();
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [userEmail, setUserEmail] = useState('');
-
-    // const token = localStorage.getItem('lk-token')
-    const login = (data) => {
-
-    }
+    const [token, setToken] = useState('');
 
     const logout = () => {
         localStorage.removeItem('lk-token');
@@ -17,13 +13,16 @@ export default function AuthProvider({ children }) {
         setUserEmail('');
     }
 
-    console.log(userEmail)
+    console.log(userEmail, 'userEmail')
+    console.log(token, 'token')
+    console.log(user, 'user')
 
     useEffect(() => {
-        if (userEmail) {
-            fetch(`${process.env.URL}/api/user/userInfo?email=${userEmail}`, {
+        setToken(localStorage.getItem('lk-token'));
+        if (token) {
+            fetch(`${process.env.URL}/api/user/userInfo`, {
                 headers: {
-                    authorization: `bearer ${localStorage.getItem('lk-token')}`
+                    authorization: `bearer ${token}`
                 }
             })
                 .then(res => res.json())
@@ -34,7 +33,7 @@ export default function AuthProvider({ children }) {
                     }
                 })
         }
-    }, [userEmail])
+    }, [token])
 
     const authInfo = {
         user,

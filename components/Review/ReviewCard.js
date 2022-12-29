@@ -1,5 +1,4 @@
 const ReviewCard = ({ review }) => {
-	console.log(review.img)
 	return (
 		<div className=" lg:my-8  bg-white shadow-md rounded-xl  hover:shadow-xl  mx-4">
 			<div className="container max-w-xl mx-auto">
