@@ -1,4 +1,8 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
+import { AuthContext } from '../../context/AuthProvider';
 import {
 	getBooks,
 	getCategoryWiseBooks,
@@ -6,8 +10,11 @@ import {
 } from '../api/util/getDataFromDB';
 
 const BookDetails = ({ book, singleCategory }) => {
-	console.log(book);
 
+	const { user, loading } = useContext(AuthContext);
+	const router = useRouter();
+
+	console.log(router)
 	const handleReview = (e) => {
 		e.preventDefault();
 		const form = e.target;
@@ -64,24 +71,29 @@ const BookDetails = ({ book, singleCategory }) => {
 				</div>
 			</div>
 			<div className="p-6 border border-primary_color rounded-lg mt-8">
-				<p className="text-2xl font-bold mb-6 text-secondary_color bg-neutral px-2 py-1 rounded-3xl text-center">
-					Please Login to provide a review.
-				</p>
-				<form onSubmit={handleReview}>
-					<h2 className="text-2xl font-bold mb-6">Place a review</h2>
-					<textarea
-						name="review"
-						id="review"
-						cols="30"
-						rows="2"
-						className="w-full border-primary_color border-2 rounded-lg p-3 focus:outline-none"
-					></textarea>
-					<input
-						type="submit"
-						value="Post Review"
-						className="font-medium text-white bg-primary_color px-2 py-1 rounded-lg block mx-auto mt-2"
-					/>
-				</form>
+				{
+					(!loading && !user?.email) ?
+						<Link href={{ pathname: '/login', query: { from: router.asPath } }} className="text-2xl w-full font-bold mb-6 text-secondary_color bg-neutral px-2 py-2 rounded-3xl text-center cursor-pointer hover:text-green-400">
+							Please Login to provide a review.
+						</Link>
+						:
+						<form onSubmit={handleReview}>
+							<h2 className="text-2xl font-bold mb-6">Place a review</h2>
+							<textarea
+								name="review"
+								id="review"
+								cols="30"
+								rows="2"
+								className="w-full border-primary_color border-2 rounded-lg p-3 focus:outline-none"
+							></textarea>
+							<input
+								type="submit"
+								value="Post Review"
+								className="font-medium cursor-pointer text-white bg-primary_color px-2 py-1 rounded-lg block mx-auto mt-2"
+							/>
+						</form>
+				}
+
 			</div>
 			<div className="p-6 border border-primary_color rounded-lg mt-8">
 				<h2 className="text-2xl font-bold mb-6">Similar books</h2>

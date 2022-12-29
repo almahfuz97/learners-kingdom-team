@@ -12,6 +12,8 @@ export default function Login() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const from = router.query.from || '/'
+    console.log(router)
 
     const onSubmit = async (data) => {
         setIsLoading(true)
@@ -28,13 +30,16 @@ export default function Login() {
         console.log(result)
         if (result.token) {
             localStorage.setItem('lk-token', result.token);
-            router.push('/');
             setUserEmail(data.email);
+            router.push(from);
+            setIsLoading(false)
+
         }
         else {
             setError(result.message);
+            setIsLoading(false)
+
         }
-        setIsLoading(false)
     }
     return (
 
@@ -68,7 +73,7 @@ export default function Login() {
                                 <Loading />
                             </div>
                             :
-                            <button className="block w-full p-3 text-center rounded-md bg-primary_color">Sign in</button>
+                            <button type='submit' className="block w-full p-3 text-center rounded-md bg-primary_color text-white uppercase font-semibold hover:shadow">Sign in</button>
 
                     }
                 </form>

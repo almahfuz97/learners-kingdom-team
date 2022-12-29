@@ -25,9 +25,9 @@ export default function Navbar() {
                             loading ? <Loading></Loading>
                                 : user?._id ?
                                     <>
-                                        <li>{user.name}</li>
                                         <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
-                                        <li onClick={() => logout()}>Logout</li>
+                                        <li>{user.name}</li>
+                                        <li className=' hover:text-primary_color cursor-pointer' onClick={() => logout()}>Logout</li>
                                     </>
                                     : <Link className=' hover:text-primary_color' href="/login"><li>Login</li></Link>
 
