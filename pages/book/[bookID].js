@@ -2,22 +2,28 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import BookReveiwsContainer from '../../components/BookReviews/BookReveiwsContainer';
 import Loading from '../../components/Loader/Loading';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
 import { AuthContext } from '../../context/AuthProvider';
-import {
-	getBooks,
-	getCategoryWiseBooks,
-	getSingleBook,
-} from '../api/util/getDataFromDB';
+import { getCategoryWiseBooks, getSingleBook, getSpecificBookReviews } from '../api/util/getDataFromDB';
 
-const BookDetails = ({ book, singleCategory }) => {
+
+const BookDetails = ({ book, bookReviews, singleCategory }) => {
+
+	const [bookReviews2, setBookReviews2] = useState(bookReviews);
+
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const { user, loading } = useContext(AuthContext);
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 
-	console.log(router)
+	const refresh = async (id) => {
+		const res = await fetch(`${process.env.URL}/api/books/booksReview?bookID=${id}`)
+		const data = await res.json();
+		console.log(data)
+		setBookReviews2(data);
+	}
 	const onSubmit = data => {
 		setIsLoading(true);
 		const reviewData = {
@@ -44,14 +50,20 @@ const BookDetails = ({ book, singleCategory }) => {
 			.then(res => res.json())
 			.then(data => {
 				console.log(data)
-				if (data.insertedId) alert('Review added successfully!')
+				if (data.insertedId) {
+					// alert('Review added successfully!')
+					refresh(book._id);
+				}
 				setIsLoading(false)
 				reset();
+
+				// router.replace(router.asPath)
 			})
 			.catch(err => {
 				console.log(err.message)
 				setIsLoading(false)
 				reset();
+				router.replace(router.asPath)
 			})
 	};
 
@@ -138,6 +150,8 @@ const BookDetails = ({ book, singleCategory }) => {
 				}
 			</div>
 
+			<BookReveiwsContainer bookReviews={bookReviews2}></BookReveiwsContainer>
+
 			<div className="p-6 border border-primary_color rounded-lg mt-8">
 				<h2 className="text-2xl font-bold mb-6">Similar books</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -147,45 +161,87 @@ const BookDetails = ({ book, singleCategory }) => {
 							<SimilarBooksCard
 								key={simBook._id}
 								book={simBook}
+								refresh={refresh}
 							></SimilarBooksCard>
 						))}
 				</div>
 			</div>
 		</section>
+
 	);
 };
 
-export const getStaticProps = async ({ params }) => {
-	const book = await getSingleBook(params.bookID.split(',')[0]);
-	console.log('hehe', params);
-	const singleCategory = await getCategoryWiseBooks(
-		params.bookID.split(',')[1]
-	);
-	console.log(params.bookID);
+export async function getServerSideProps({ params }) {
+
+	console.log('here', params.bookID)
+	const bookId = params.bookID.split(',')[0];
+	const categoryId = params.bookID.split(',')[1];
+
+	const bookReviews = await getSpecificBookReviews(bookId)
+	const book = await getSingleBook(bookId);
+	const singleCategory = await getCategoryWiseBooks(categoryId);
 
 	return {
 		props: {
+			bookReviews: JSON.parse(JSON.stringify(bookReviews)),
 			book: JSON.parse(JSON.stringify(book)),
 			singleCategory: JSON.parse(JSON.stringify(singleCategory)),
 		},
-	};
-};
 
-export const getStaticPaths = async () => {
-	const books = await getBooks();
+	}
+}
+// export async function getServerSideProps({ params }) {
 
-	const paths = books.map((book) => {
-		return {
-			params: {
-				bookID: `${book._id},${book.categoryID}`,
-			},
-		};
-	});
+// console.log('here', params.bookID)
+// const bookReviews = await getBooksReviews();
+// const book = await getSingleBook(params.bookID.split(',')[0]);
+// console.log(params.id)
+// const singleCategory = await getCategoryWiseBooks(params.bookID.split(',')[1]);
 
-	return {
-		paths,
-		fallback: false,
-	};
-};
+
+// return {
+// props: {
+// 	book: JSON.parse(JSON.stringify(book)),
+// 	singleCategory: JSON.parse(JSON.stringify(singleCategory)),
+// 	bookReviews: JSON.parse(JSON.stringify(bookReviews)),
+// },
+// 	props: {
+// 		book: 'hello'
+// 	}
+// };
+// }
+
+// export const getStaticProps = async ({ params }) => {
+// 	const book = await getSingleBook(params.bookID.split(',')[0]);
+// 	console.log('hehe', params);
+// 	const singleCategory = await getCategoryWiseBooks(
+// 		params.bookID.split(',')[1]
+// 	);
+// 	console.log(params.bookID);
+
+// 	return {
+// 		props: {
+// 			book: JSON.parse(JSON.stringify(book)),
+// 			singleCategory: JSON.parse(JSON.stringify(singleCategory)),
+// 		},
+// 	};
+// };
+
+// export const getStaticPaths = async () => {
+// 	const books = await getBooks();
+
+// 	const paths = books.map((book) => {
+// 		return {
+// 			params: {
+// 				bookID: `${book._id},${book.categoryID}`,
+// 			},
+// 		};
+// 	});
+
+// 	return {
+// 		paths,
+// 		fallback: false,
+// 	};
+// };
 
 export default BookDetails;

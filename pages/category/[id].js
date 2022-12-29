@@ -40,7 +40,6 @@ const Category = ({ books, categories, loadingData, singleCategory }) => {
 
 export async function getServerSideProps({ params }) {
 
-
     const id = params.id
     const books = await getCategoryWiseBooks(id);
     const categories = await getCategories();

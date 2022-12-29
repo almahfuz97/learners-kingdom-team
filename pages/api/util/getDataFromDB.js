@@ -68,6 +68,21 @@ export async function getReviews(id) {
     return result
 }
 
+export async function getBooksReviews() {
+    const client = await clientPromise;
+    const db = client.db("learners-kingdom");
+    const query = {}
+    const result = await db.collection('booksReviews').find().sort({ createdAt: -1 }).toArray();
+    return result
+}
+export async function getSpecificBookReviews(id) {
+    const client = await clientPromise;
+    const db = client.db("learners-kingdom");
+    const query = { bookID: id }
+    const result = await db.collection('booksReviews').find(query).sort({ createdAt: -1 }).toArray();
+    return result
+}
+
 export default async function handler(req, res) {
 
     const result = await getCategories();
