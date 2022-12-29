@@ -11,14 +11,18 @@ export default function AuthProvider({ children }) {
         localStorage.removeItem('lk-token');
         setUser(null);
         setUserEmail('');
+        setToken('');
     }
+
+    useEffect(() => {
+        setToken(localStorage.getItem('lk-token'))
+    }, [userEmail])
 
     console.log(userEmail, 'userEmail')
     console.log(token, 'token')
     console.log(user, 'user')
 
     useEffect(() => {
-        setToken(localStorage.getItem('lk-token'));
         if (token) {
             fetch(`${process.env.URL}/api/user/userInfo`, {
                 headers: {
