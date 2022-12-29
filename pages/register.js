@@ -7,73 +7,92 @@ export default function Register() {
         register,
         formState: { errors },
         handleSubmit,
-      } = useForm();
-      const onSubmit = (data) => console.log(data);
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        console.log(data)
+        const res = await fetch(`${process.env.URL}/api/user/signup`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        console.log(result)
+        if (result.token) {
+            localStorage.setItem('lk-token', result.token);
+        }
+        else {
+            console.log(result.message);
+        }
+    }
+
     return (
-       
+
         <div className=' flex justify-center my-20 mx-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-secondary_color">
                 <h1 className="text-2xl font-bold  text-center">Register</h1>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 ng-untouched ng-pristine ng-valid">
                     <div className="space-y-1 text-sm">
-                        <label for="email" className="block ">Name</label>
-                        <input type="text" name="username" id="username" placeholder="Name" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
-                        {...register("name", { required: true })} />
+                        <label htmlFor="name" className="block ">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Name" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
+                            {...register("name", { required: true })} />
                         <error className="text-red-500">
-                        {errors.name?.type === "required" && "Name is required"}
-            </error>
-                    </div>
-                    <div className="space-y-1 text-sm">
-                        <label for="email" className="block ">Email</label>
-                        <input type="email" name="username" id="username" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" 
-                        {...register("email", {
-                            required: true,
-                            pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
-                          })}
-                        />
-                        <error className="text-red-500">
-                        {errors.email?.type === "required" && "Email is required"}
-                        {errors.email?.type === "pattern" &&
-                        "Entered email is in wrong format"}
-            </error>
-                    </div>
-                    <div className="space-y-1 text-sm">
-                        <label for="email" className="block ">Phone</label>
-                        <input type="number" name="phone" id="username" placeholder="Phone" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" 
-                        {...register("number", {
-                            minLength: 6,
-                            maxLength: 12,
-                          })}
-                        />
-                        <error className="text-red-500">
-                          {errors.number?.type === "minLength" &&
-                            "Entered number is less than 6 digits"}
-                          {errors.number?.type === "maxLength" &&
-                            "Entered number is more than 12 digits"}
+                            {errors.name?.type === "required" && "Name is required"}
                         </error>
                     </div>
                     <div className="space-y-1 text-sm">
-                        <label for="email" className="block ">Address</label>
-                        <input type="text" name="username" id="username" placeholder="address" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
-                        {...register("address", { required: true })} />
+                        <label htmlFor="email" className="block ">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
+                            {...register("email", {
+                                required: true,
+                                pattern: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i,
+                            })}
+                        />
                         <error className="text-red-500">
-                        {errors.address?.type === "required" && "Address is required"}
+                            {errors.email?.type === "required" && "Email is required"}
+                            {errors.email?.type === "pattern" &&
+                                "Entered email is in wrong format"}
                         </error>
                     </div>
                     <div className="space-y-1 text-sm">
-                        <label for="password" className="block ">Password</label>
+                        <label htmlFor="phone" className="block ">Phone</label>
+                        <input type="number" name="phone" id="phone" placeholder="Phone" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
+                            {...register("phone", {
+                                minLength: 6,
+                                maxLength: 12,
+                            })}
+                        />
+                        <error className="text-red-500">
+                            {errors.number?.type === "minLength" &&
+                                "Entered number is less than 6 digits"}
+                            {errors.number?.type === "maxLength" &&
+                                "Entered number is more than 12 digits"}
+                        </error>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="address" className="block ">Address</label>
+                        <input type="text" name="address" id="address" placeholder="address" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400"
+                            {...register("address", { required: true })} />
+                        <error className="text-red-500">
+                            {errors.address?.type === "required" && "Address is required"}
+                        </error>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                        <label htmlFor="password" className="block ">Password</label>
                         <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md   focus:dark:border-violet-400" {...register("password", {
-                         required: true,
-                        minLength: 5,
-                         maxLength: 20,
-                         })}
-                         />
-                    <error className="text-red-500">
-                     {errors.password?.type === "minLength" &&
-                        "Enter a password at least 5 characters"}
-                        {errors.password?.type === "maxLength" &&
-                             "Enter a password is not more than 20 characters"}
-                         </error>
+                            required: true,
+                            minLength: 5,
+                            maxLength: 20,
+                        })}
+                        />
+                        <error className="text-red-500">
+                            {errors.password?.type === "minLength" &&
+                                "Enter a password at least 5 characters"}
+                            {errors.password?.type === "maxLength" &&
+                                "Enter a password is not more than 20 characters"}
+                        </error>
                         <div className="flex justify-end text-xs ">
                             <Link rel="noopener noreferrer" href="#">Forgot Password?</Link>
                         </div>
@@ -107,6 +126,6 @@ export default function Register() {
                 </p>
             </div>
         </div>
-        
+
     )
 }

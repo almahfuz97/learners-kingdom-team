@@ -1,11 +1,13 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from "react-hook-form";
 import Loading from '../components/Loader/Loading';
+import { AuthContext } from '../context/AuthProvider';
 
 
 export default function Login() {
+    const { setUserEmail } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +28,8 @@ export default function Login() {
         console.log(result)
         if (result.token) {
             localStorage.setItem('lk-token', result.token);
-            router.push('/')
+            router.push('/');
+            setUserEmail(data.email);
         }
         else {
             setError(result.message);
@@ -34,7 +37,7 @@ export default function Login() {
         setIsLoading(false)
     }
     return (
-        
+
         <div className=' flex justify-center my-20 mx-6'>
             <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-secondary_color">
                 <h1 className="text-2xl font-bold text-center">Login</h1>
@@ -96,6 +99,6 @@ export default function Login() {
                 </p>
             </div>
         </div>
-        
+
     )
 }

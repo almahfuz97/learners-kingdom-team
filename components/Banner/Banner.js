@@ -6,13 +6,13 @@ import SearchCard from '../SearchInput/SearchCard';
 import SearchInput from '../SearchInput/SearchInput';
 
 export default function Banner({ books }) {
-    console.log(books)
+    // console.log(books)
     const [text, setText] = useState('');
     const { register, handleSubmit, watch } = useForm();
     const [searchedBook, setSearchedBook] = useState();
     const router = useRouter();
 
-    console.log("here", searchedBook)
+    // console.log("here", searchedBook)
     const handleKeyUp = e => {
         console.log(e.key)
         if (e.key === 'Enter') {
@@ -24,7 +24,7 @@ export default function Banner({ books }) {
             })
         }
     }
-    console.log(searchedBook);
+    // console.log(searchedBook);
     useEffect(() => {
         const searchText = watch('search');
         const result = books.filter(book => book.bookName.toLowerCase().includes(searchText.toLowerCase()) || book.authorName.toLowerCase().includes(searchText.toLowerCase()));
