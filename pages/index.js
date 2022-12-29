@@ -29,7 +29,7 @@ export default function Home({ categories, books, recentlyAdded, mostRatedBooks,
       <FeaturedCategory categories={categories} />
       <RecentlyAdded recentlyAdded={recentlyAdded} />
       <PopularBooksContainer mostRatedBooks={mostRatedBooks} mostSoldBooks={mostSoldBooks} />
-      <Review />
+      {/* <Review /> */}
       <Pricing />
       <FAQ />
       <NewsLetter />
