@@ -51,11 +51,14 @@ export default async function handler(req, res) {
 				email,
 				phone,
 				encrypted_password,
-				address
+				address,
 			};
 
 			const result = await db.collection('users').insertOne(userInfo);
-			res.status(200).json({ status: true, result });
+			res.status(200).json({ success: true, result });
+
+			// const token = jwt.sign(email, process.env.JWT_KEY);
+			// res.status(200).json({ success: true, token: token });
 		} else {
 			return res.json({ success: false, message: 'No data found' });
 		}
