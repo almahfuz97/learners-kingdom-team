@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Loading from '../../components/Loader/Loading';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
 import { AuthContext } from '../../context/AuthProvider';
 import {
@@ -10,16 +12,47 @@ import {
 } from '../api/util/getDataFromDB';
 
 const BookDetails = ({ book, singleCategory }) => {
-
+	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const { user, loading } = useContext(AuthContext);
 	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(false);
 
 	console.log(router)
-	const handleReview = (e) => {
-		e.preventDefault();
-		const form = e.target;
-		const review = form.review.value;
-		console.log(review);
+	const onSubmit = data => {
+		setIsLoading(true);
+		const reviewData = {
+			userName: user.name,
+			userEmail: user.email,
+			...data,
+			bookID: book._id,
+			categoryID: book.categoryID,
+			bookName: book.bookName,
+			bookAuthor: book.authorName,
+			userImg: 'https://i.ibb.co/H2dyBxm/leo.jpg',
+			createdAt: Date.now(),
+		}
+
+		console.log(reviewData)
+
+		fetch(`${process.env.URL}/api/books/booksReview`, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify(reviewData)
+		})
+			.then(res => res.json())
+			.then(data => {
+				console.log(data)
+				if (data.insertedId) alert('Review added successfully!')
+				setIsLoading(false)
+				reset();
+			})
+			.catch(err => {
+				console.log(err.message)
+				setIsLoading(false)
+				reset();
+			})
 	};
 
 	return (
@@ -70,6 +103,7 @@ const BookDetails = ({ book, singleCategory }) => {
 					{/* <p><span className="text-gray-600 font-medium">Tags: </span>{book.tags.join(', ')}</p> */}
 				</div>
 			</div>
+
 			<div className="p-6 border border-primary_color rounded-lg mt-8">
 				{
 					(!loading && !user?.email) ?
@@ -77,24 +111,33 @@ const BookDetails = ({ book, singleCategory }) => {
 							Please Login to provide a review.
 						</Link>
 						:
-						<form onSubmit={handleReview}>
+						<form onSubmit={handleSubmit(onSubmit)}>
 							<h2 className="text-2xl font-bold mb-6">Place a review</h2>
 							<textarea
 								name="review"
+								{...register('reviewContent', { required: true })}
 								id="review"
 								cols="30"
 								rows="2"
 								className="w-full border-primary_color border-2 rounded-lg p-3 focus:outline-none"
 							></textarea>
-							<input
-								type="submit"
-								value="Post Review"
-								className="font-medium cursor-pointer text-white bg-primary_color px-2 py-1 rounded-lg block mx-auto mt-2"
-							/>
+							{
+								isLoading ?
+									<div
+										className=' flex justify-center'
+									>
+										<Loading></Loading>
+									</div>
+									: <input
+										type="submit"
+										value="Post Review"
+										className="font-medium cursor-pointer text-white bg-primary_color px-2 py-1 rounded-lg block mx-auto mt-2"
+									/>
+							}
 						</form>
 				}
-
 			</div>
+
 			<div className="p-6 border border-primary_color rounded-lg mt-8">
 				<h2 className="text-2xl font-bold mb-6">Similar books</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
