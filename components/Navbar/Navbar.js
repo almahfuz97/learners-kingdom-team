@@ -21,14 +21,16 @@ export default function Navbar() {
                     <ul className='hidden md:flex gap-4'>
                         <Link className=' hover:text-primary_color' href="/"><li>Home</li></Link>
                         <Link className=' hover:text-primary_color' href="/about"><li>About Us</li></Link>
-                        <Link className=' hover:text-primary_color' href="/register"><li>Sign Up</li></Link>
                         {
                             loading ? <Loading></Loading>
-                                : user?._id &&
-                                <>
-                                    <li>{user.name}</li>
-                                    <li onClick={() => logout()}>Logout</li>
-                                </>
+                                : user?._id ?
+                                    <>
+                                        <li>{user.name}</li>
+                                        <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
+                                        <li onClick={() => logout()}>Logout</li>
+                                    </>
+                                    : <Link className=' hover:text-primary_color' href="/login"><li>Login</li></Link>
+
                         }
                     </ul>
                     <div className='block md:hidden hover:cursor-pointer' onClick={handleToggle} >

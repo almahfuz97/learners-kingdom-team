@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const SimilarBooksCard = ({ book }) => {
     return (
-        <Link href={`/book/${book._id}`}>
+        <Link href={`/book/${book._id},${book.categoryID}`}>
             <div className="flex flex-col gap-1 p-3 bg-primary_color/30 rounded-md hover:scale-105 transition-all">
                 <img src={book.picture} alt="" className="w-full h-64 object-cover rounded-t" />
                 <h2 className="text-lg font-bold mt-1">{book.bookName}</h2>

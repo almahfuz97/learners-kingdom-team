@@ -19,14 +19,9 @@ export default function AuthProvider({ children }) {
         setToken(localStorage.getItem('lk-token'))
     }, [userEmail])
 
-    console.log(userEmail, 'userEmail')
-    console.log(token, 'token')
-    console.log(user, 'user')
-
     useEffect(() => {
         if (token) {
             setLoading(true)
-
             fetch(`${process.env.URL}/api/user/userInfo`, {
                 headers: {
                     authorization: `bearer ${token}`
@@ -43,7 +38,6 @@ export default function AuthProvider({ children }) {
                     setUser();
                 })
         }
-
     }, [token])
 
     const authInfo = {
