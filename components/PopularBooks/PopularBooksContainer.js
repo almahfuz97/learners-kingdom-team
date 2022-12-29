@@ -1,10 +1,10 @@
 import MostSoldBooksContainer from './MostSoldBooks/MostSoldBooksContainer';
 import PopularBooksByRatingContainer from './PopularBookByRating/PopularBooksByRatingContainer';
 
-const PopularBooksContainer = () => {
+const PopularBooksContainer = ({ mostRatedBooks }) => {
 	return (
 		<div>
-			<PopularBooksByRatingContainer />
+			<PopularBooksByRatingContainer mostRatedBooks={mostRatedBooks} />
 			<MostSoldBooksContainer />
 		</div>
 	);

@@ -10,10 +10,10 @@ const BookDetails = ({ book, singleCategory }) => {
                     <img src={book?.picture} alt="" className="mx-auto w-full sm:max-w-xs md:max-w-md" />
                 </div>
                 <div className="p-6 border border-primary_color rounded-lg flex-1">
-                    <h1 className="text-3xl font-bold mb-2">{book.name}</h1>
+                    <h1 className="text-3xl font-bold mb-2">{book.bookName}</h1>
                     <div className="flex gap-12">
-                        <p><span className="text-gray-600 font-medium">Author: </span>{book.author}</p>
-                        <p><span className="text-gray-600 font-medium">Rating: </span> </p>
+                        <p><span className="text-gray-600 font-medium">Author: </span>{book.authorName}</p>
+                        <p className="text-sm">Rating: {[...Array(parseInt(book?.rating))].map((_, i) => '⭐ ')}</p>
                     </div>
                     <h4 className="text-xl font-medium my-4"><span className="text-gray-600">Price: </span><span className="text-rose-600">${book.price}</span></h4>
                     <p className="text-justify"><span className="text-gray-600 font-medium">Description:</span> {book.description}</p>
@@ -56,8 +56,6 @@ export const getStaticPaths = async () => {
             params: {
                 bookID: `${book._id},${book.categoryID}`,
             },
-
-
         }
     })
 

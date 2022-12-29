@@ -25,6 +25,20 @@ export async function getBooks() {
     const result = await db.collection('books').find(query).toArray();
     return result
 }
+export async function getRecentlyAddedBooks() {
+    const client = await clientPromise;
+    const db = await client.db("learners-kingdom");
+    const query = {}
+    const result = await db.collection('books').find(query).sort({ published: -1 }).limit(6).toArray();
+    return result
+}
+export async function getMostRatedBooks() {
+    const client = await clientPromise;
+    const db = await client.db("learners-kingdom");
+    const query = {}
+    const result = await db.collection('books').find(query).sort({ rating: -1 }).limit(6).toArray();
+    return result
+}
 export async function getSingleBook(id) {
     console.log(id)
     const client = await clientPromise;
