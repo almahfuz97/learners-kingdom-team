@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthProvider';
+import Loading from '../Loader/Loading';
 
 export default function Navbar() {
     const [toggle, setToggle] = useState(false);
-    const { user, logout } = useContext(AuthContext);
-    console.log(user)
+    const { user, logout, loading } = useContext(AuthContext);
+    console.log(loading)
 
     const handleToggle = () => {
         setToggle(prev => !prev);
@@ -22,11 +23,12 @@ export default function Navbar() {
                         <Link className=' hover:text-primary_color' href="/about"><li>About Us</li></Link>
                         <Link className=' hover:text-primary_color' href="/register"><li>Sign Up</li></Link>
                         {
-                            user?._id &&
-                            <>
-                                <li>{user.name}</li>
-                                <li onClick={() => logout()}>Logout</li>
-                            </>
+                            loading ? <Loading></Loading>
+                                : user?._id &&
+                                <>
+                                    <li>{user.name}</li>
+                                    <li onClick={() => logout()}>Logout</li>
+                                </>
                         }
                     </ul>
                     <div className='block md:hidden hover:cursor-pointer' onClick={handleToggle} >

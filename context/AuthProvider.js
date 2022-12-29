@@ -6,11 +6,13 @@ export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [userEmail, setUserEmail] = useState('');
     const [token, setToken] = useState('');
+    const [loading, setLoading] = useState(true)
 
     const logout = () => {
         localStorage.removeItem('lk-token');
         setUser(null);
         setUserEmail('');
+        setToken('')
     }
 
     console.log(userEmail, 'userEmail')
@@ -18,28 +20,38 @@ export default function AuthProvider({ children }) {
     console.log(user, 'user')
 
     useEffect(() => {
+        console.log('ami useeffect er vitore')
         setToken(localStorage.getItem('lk-token'));
-        if (token) {
-            fetch(`${process.env.URL}/api/user/userInfo`, {
-                headers: {
-                    authorization: `bearer ${token}`
+    }, [userEmail])
+
+    useEffect(() => {
+
+        fetch(`${process.env.URL}/api/user/userInfo`, {
+            headers: {
+                authorization: `bearer ${token}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setUser(data.data);
                 }
+                setLoading(false);
+
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        setUser(data.data);
-                        console.log(user)
-                    }
-                })
-        }
-    }, [token])
+            .catch(err => {
+                setLoading(false);
+                setUser();
+            })
+
+    }, [token, userEmail])
 
     const authInfo = {
         user,
         setUser,
         setUserEmail,
-        logout
+        logout,
+        loading
     }
 
     return (
