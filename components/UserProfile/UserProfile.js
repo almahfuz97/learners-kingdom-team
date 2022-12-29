@@ -33,13 +33,13 @@ const UserProfile = () => {
                 <div className="grid grid-cols-1 col-span-4 mt-10 py-3">
                     <h2 className='text-xl text-white py-3'>User Id</h2>
                     <p className=' text-white py-2'>Full Name</p>
-                    <h2 className='text-xl text-white py-2'>Imtiaz Uddin</h2>
+                    <h2 className='text-xl text-white py-2'>{user?.name}</h2>
                     <p className='text-white py-2'>Email Address</p>
-                    <h2 className='text-xl text-white py-3'>imtiazuddin176@gmail.com</h2>
+                    <h2 className='text-xl text-white py-3'>{user?.email}</h2>
                     <p className=' text-white py-2'>Phone</p>
-                    <h1 className='text-xl text-white py-2'>+8801840930768</h1>
+                    <h1 className='text-xl text-white py-2'>{user.phone}</h1>
                     <p className=' text-white py-2'>Address</p>
-                    <h1 className='text-xl text-white py-2'>Road No: 2, Mithanala, Mirsharai, Chattagram,Bangladesh</h1>
+                    <h1 className='text-xl text-white py-2'>{user.address}</h1>
 
                 </div>
             </div>
