@@ -31,7 +31,7 @@ export default function AuthProvider({ children }) {
         }).then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    setUser(data.success);
+                    setUser(data.data);
                 }
                 setLoading(false)
             })
