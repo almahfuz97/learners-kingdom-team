@@ -28,13 +28,19 @@ export default function AuthProvider({ children }) {
             headers: {
                 authorization: `bearer ${token}`
             }
-        })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    setUser(data.success);
+                }
+                setLoading(false)
+            })
             .catch(err => {
                 setLoading(false);
                 setUser();
             })
 
-    }, [token, userEmail])
+    }, [token])
 
     const authInfo = {
         user,
