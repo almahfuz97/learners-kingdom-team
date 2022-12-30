@@ -6,11 +6,11 @@ const Pricing = () => {
         <h2 className="text-3xl mb-2 text-primary_color font-bold text-center my-2">Our Subscription Plan</h2>
       </header>
       <section
-        className="flex flex-col lg:flex-row items-center lg:justify-center w-full lg:px-10 py-12 "
+        className="flex flex-col lg:flex-row items-center lg:justify-center w-full lg:px-10 py-8 gap-2"
       >
         <article
           // className="bg-secondary_color w-4/5 lg:w-custom mb-10 lg:px-4 py-10 hover:py-16 hover:bg-primary_color text-center text-primary-dark"
-          className="w-4/5 lg:w-custom mb-10 lg:px-4 py-10 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-slate-400"
+          className="w-4/5 lg:w-custom mb-10 lg:px-4 py-10 bg-white shadow-md rounded-xl border border-primary_color duration-500 hover:scale-105 hover:bg-primary_color/50"
         >
           <h5 className="text-center font-bold text-base uppercase py-3">Personal</h5>
           <h2 className="pb-4 flex justify-center font-bold border-b border-gray-300">
@@ -29,7 +29,7 @@ const Pricing = () => {
           </button>
         </article>
         <article
-          className=" w-4/5 mx-5 lg:w-custom mb-10 lg:px-4 py-10 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-slate-400"
+          className=" w-4/5 mx-5 lg:w-custom mb-10 lg:px-4 py-10 bg-white shadow-md rounded-xl border border-primary_color duration-500 hover:scale-105 hover:bg-primary_color/50"
         >
           <h5 className="text-center font-bold text-base uppercase py-3">Family</h5>
           <h2
@@ -50,7 +50,7 @@ const Pricing = () => {
           </button>
         </article>
         <article
-          className="w-4/5 lg:w-custom mb-10 lg:px-4 py-10 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:bg-slate-400"
+          className="w-4/5 lg:w-custom mb-10 lg:px-4 py-10 bg-white shadow-md rounded-xl duration-500 border border-primary_color hover:scale-105 hover:bg-primary_color/50"
         >
           <h5 className="text-center font-bold text-base uppercase py-3">Institution</h5>
           <h2 className="flex justify-center pb-4 font-bold border-b border-gray-200">
