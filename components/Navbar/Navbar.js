@@ -27,6 +27,7 @@ export default function Navbar() {
                                     <>
                                         <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
                                         <li>{user.name}</li>
+                                        <Link className='hover:text-primary_color' href='/cart'> <li>  <img className='w-6' src="/cart.svg" alt="" /> </li></Link>
                                         <li className=' hover:text-primary_color cursor-pointer' onClick={() => logout()}>Logout</li>
                                     </>
                                     : <Link className=' hover:text-primary_color' href="/login"><li>Login</li></Link>

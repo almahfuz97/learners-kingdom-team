@@ -1,5 +1,5 @@
-import { useState } from "react";
-import AddTocardCard from "./AddTocartCard";
+import AddTocardCard from "../components/addTocart/AddTocartCard";
+
 
 const AddTocart = () => {
 
