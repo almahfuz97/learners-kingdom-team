@@ -12,6 +12,7 @@ import { getCategoryWiseBooks, getSingleBook, getSpecificBookReviews } from '../
 const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 	const [bookReviews2, setBookReviews2] = useState(bookReviews);
+	const [id, setId] = useState(book._id)
 
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const { user, loading } = useContext(AuthContext);
@@ -52,7 +53,8 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 				console.log(data)
 				if (data.insertedId) {
 					// alert('Review added successfully!')
-					refresh(book._id);
+					setId(book._id)
+					refresh();
 				}
 				setIsLoading(false)
 				reset();
@@ -161,7 +163,6 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 							<SimilarBooksCard
 								key={simBook._id}
 								book={simBook}
-								refresh={refresh}
 							></SimilarBooksCard>
 						))}
 				</div>

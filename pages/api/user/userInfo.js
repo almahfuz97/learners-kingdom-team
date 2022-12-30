@@ -13,9 +13,9 @@ export default async function handler(req, res) {
         if (!authHeaders) return res.status(403).json({ success: false, message: 'forbidden' })
 
         const token = authHeaders.split(' ')[1];
+
         if (token) {
             jwt.verify(token, process.env.JWT_KEY, async function (err, decoded) {
-
                 const client = await clientPromise;
                 const db = client.db("learners-kingdom");
                 const query = { email: decoded }
@@ -29,5 +29,8 @@ export default async function handler(req, res) {
         else {
             return res.status(403).json({ success: false, message: 'forbidden' })
         }
+    }
+    else {
+        res.json({ success: false })
     }
 }
