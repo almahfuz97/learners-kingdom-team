@@ -8,11 +8,9 @@ import { getCategories, getCategoryWiseBooks, getSingleCategory } from '../api/u
 
 const Category = ({ books, categories, loadingData, singleCategory }) => {
     const [loading, setLoading] = useState(true);
-    // console.log(loadingData)
     console.log(books, singleCategory)
     useEffect(() => {
         setLoading(false)
-        console.log(loadingData, 'useeffect')
     }, [loadingData])
 
     return (
@@ -22,12 +20,14 @@ const Category = ({ books, categories, loadingData, singleCategory }) => {
             </div>
             <div className="flex gap-4">
                 <aside className="border border-primary_color min-w-[240px] flex flex-col gap-2 p-4 rounded-lg sticky top-0 bg-primary_color/20 font-bold">
-                    <p className="font-bold text-2xl text-black mb-2">Categories</p>
-                    {
-                        categories?.map((category, i) => <Link className=' cursor-pointer' onClick={() => setLoading(true)} href={`${category._id}`} key={i}><p className={singleCategory.category_name == category.category_name ? `text-[#8bd11b]` : `text-gray-600`}>{category.category_name}</p></Link>)
-                    }
+                    <div className="sticky top-4">
+                        <Link href='/category'><p className="font-bold text-2xl text-black mb-2">All Categories</p></Link>
+                        {
+                            categories?.map((category, i) => <Link className=' cursor-pointer' onClick={() => setLoading(true)} href={`${category._id}`} key={i}><p className={singleCategory.category_name == category.category_name ? `text-[#8bd11b]` : `text-gray-600`}>{category.category_name}</p></Link>)
+                        }
+                    </div>
                 </aside>
-                <main className="border border-primary_color flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+                <main className="border border-primary_color flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 rounded-lg">
                     {
                         loading ? <div className='flex justify-center'><Loading></Loading></div> :
                             books.map(book => <SimilarBooksCard key={book._id} book={book}></SimilarBooksCard>)
@@ -51,10 +51,7 @@ export async function getServerSideProps({ params }) {
             categories: JSON.parse(JSON.stringify(categories)),
             singleCategory: JSON.parse(JSON.stringify(singleCategory)),
             loadingData: Math.random(),
-
-
         },
-
     }
 }
 

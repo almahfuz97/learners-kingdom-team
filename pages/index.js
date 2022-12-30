@@ -12,6 +12,7 @@ import PopularBooksContainer from '../components/PopularBooks/PopularBooksContai
 import FAQ from '../components/FAQ/FAQ'
 import FeaturedCategory from '../components/FeaturedCategory/FeaturedCategory'
 import { getBooks, getCategories, getMostRatedBooks, getMostSoldBooks, getRecentlyAddedBooks, getReviews } from './api/util/getDataFromDB'
+import GiftBook from '../components/GiftBook/GiftBook'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +28,7 @@ export default function Home({ categories, books, recentlyAdded, mostRatedBooks,
       <Banner books={books} />
       <FeaturedCategory categories={categories} />
       <RecentlyAdded recentlyAdded={recentlyAdded} />
+      <GiftBook></GiftBook>
       <PopularBooksContainer mostRatedBooks={mostRatedBooks} mostSoldBooks={mostSoldBooks} />
       <Review reviews={reviews} />
       <Pricing />
