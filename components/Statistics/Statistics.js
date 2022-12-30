@@ -2,7 +2,7 @@ import { FaBook, FaRegSmile, FaShoppingCart, FaUsers } from "react-icons/fa";
 
 const Statistics = () => {
     return (
-        <div className="container max-w-screen-xl mx-auto my-32">
+        <div className="container max-w-screen-xl mx-auto my-20">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-gray-800">
                 <div className="flex items-center gap-5 border border-primary_color rounded-lg shadow-lg p-10">
                     <div className="bg-slate-200 p-5 rounded-full">
