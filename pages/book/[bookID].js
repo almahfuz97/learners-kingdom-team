@@ -121,9 +121,11 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 			<div className="p-6 border border-primary_color rounded-lg mt-8">
 				{
 					(!loading && !user?.email) ?
-						<Link href={{ pathname: '/login', query: { from: router.asPath } }} className="text-2xl w-full font-bold mb-6 text-secondary_color bg-neutral px-2 py-2 rounded-3xl text-center cursor-pointer hover:text-green-400">
-							Please Login to provide a review.
-						</Link>
+						<div className=' flex justify-center'>
+							<Link href={{ pathname: '/login', query: { from: router.asPath } }} className="text-2xl w-full font-bold mb-6 text-secondary_color bg-neutral px-2 py-2 rounded-3xl text-center cursor-pointer hover:text-green-400">
+								Please Login to provide a review.
+							</Link>
+						</div>
 						:
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<h2 className="text-2xl font-bold mb-6">Place a review</h2>
