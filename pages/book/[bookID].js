@@ -6,13 +6,16 @@ import BookReveiwsContainer from '../../components/BookReviews/BookReveiwsContai
 import Loading from '../../components/Loader/Loading';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
 import { AuthContext } from '../../context/AuthProvider';
+import { CartContext } from '../../context/CartProvider';
+import useAddCart from '../../utility/useAddCart';
 import { getCategoryWiseBooks, getSingleBook, getSpecificBookReviews } from '../api/util/getDataFromDB';
 
 
 const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 	const [bookReviews2, setBookReviews2] = useState(bookReviews);
-	const [id, setId] = useState(book._id)
+	const [id, setId] = useState(book._id);
+	const { cart, setCart } = useContext(CartContext);
 
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const { user, loading } = useContext(AuthContext);
@@ -25,6 +28,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 		console.log(data)
 		setBookReviews2(data);
 	}
+
 	const onSubmit = data => {
 		setIsLoading(true);
 		const reviewData = {
@@ -69,6 +73,11 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 			})
 	};
 
+	console.log(cart)
+	const handleAdd = (id) => {
+		useAddCart(cart, setCart, id);
+	}
+
 	return (
 		<section className="container max-w-screen-lg mx-auto mt-10">
 			<div className="md:flex gap-6">
@@ -105,7 +114,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 						</span>{' '}
 						{book.description}
 					</p>
-					<button className="text-white bg-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded my-6">
+					<button onClick={() => handleAdd(book._id)} className="text-white bg-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded my-6">
 						Add To Cart
 					</button>
 					<p className="mb-1">
