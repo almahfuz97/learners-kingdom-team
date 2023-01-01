@@ -5,9 +5,14 @@ import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
 
-    const { cart } = useContext(CartContext);
+    const { cart, setCart } = useContext(CartContext);
     const [bookPrice, setBookPrice] = useState([]);
-    console.log(bookPrice)
+    const TotalPrice = bookPrice.reduce((a, b) => a + b, 0);
+
+    const handleDelete = (id) => {
+        const removeBook = cart.filter(bookId => bookId !== id)
+        setCart(removeBook)
+    }
 
     return (
         <div className="max-w-screen-lg mx-auto mt-8">
@@ -16,7 +21,7 @@ const Cart = () => {
                 <div className="flex-1 border border-gray-400 p-4 md:p-6">
                     {
                         cart.length ?
-                            cart.map(bookId => <CartCard key={bookId} bookId={bookId} bookPrice={bookPrice} setBookPrice={setBookPrice}></CartCard>)
+                            cart.map(bookId => <CartCard key={bookId} bookId={bookId} bookPrice={bookPrice} setBookPrice={setBookPrice} handleDelete={handleDelete}></CartCard>)
                             :
                             <p>Your Cart is Empty</p>
                     }
@@ -25,10 +30,10 @@ const Cart = () => {
                 <aside className="w-full lg:w-[280px] border border-gray-400 p-6 sticky top-6">
                     <div>
                         <div className="text-right mb-8 text-lg max-w-xs ml-auto">
-                            <p className="flex justify-between">Total amount:<span className="font-semibold">${bookPrice.reduce((a, b) => a + b, 0)}</span></p>
+                            <p className="flex justify-between">Total amount:<span className="font-semibold">${TotalPrice}</span></p>
                         </div>
                         <div className="flex flex-col sm:flex-row lg:flex-col justify-end gap-4 lg:mt-12">
-                            <button className="px-6 py-2 border border-primary_color rounded-md ">Back to Home</button>
+                            <button onClick={() => setCart([])} className="px-6 py-2 border border-primary_color rounded-md ">Clear Cart</button>
                             <button className="px-6 py-2 border border-primary_color rounded-md">Continue to Payment</button>
                         </div>
                     </div>

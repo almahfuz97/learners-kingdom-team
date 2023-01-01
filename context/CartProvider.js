@@ -30,13 +30,13 @@ export default function CartProvider({ children }) {
     }, [token])
 
     useEffect(() => {
-        if (cart.length) {
+        if (user?.email) {
             const userEmail = user.email;
             const cartData = {
                 userEmail,
                 cart
             }
-
+            console.log('update cart')
             fetch(`${process.env.URL}/api/cart/postCart`, {
                 method: 'PUT',
                 headers: {
