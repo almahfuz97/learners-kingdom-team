@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Success() {
     const router = useRouter();
-    console.log(router.query)
+
     return (
         <div className=' flex justify-center my-20 mx-8'>
             <div className='shadow-lg rounded-lg p-6 '>

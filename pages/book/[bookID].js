@@ -16,7 +16,8 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 	const [bookReviews2, setBookReviews2] = useState(bookReviews);
 	const [id, setId] = useState(book._id);
-	const { cart, setCart } = useContext(CartContext);
+	const { fullCart, setCart } = useContext(CartContext);
+	const { cart } = fullCart;
 	const [modalToggle, setModalToggle] = useState(false);
 
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -84,7 +85,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 	console.log(cart)
 	const handleAdd = (id) => {
-		useAddCart(cart, setCart, id);
+		useAddCart(fullCart, setCart, id);
 	}
 
 	return (

@@ -6,7 +6,8 @@ export const CartContext = createContext();
 
 export default function CartProvider({ children }) {
 
-    const [cart, setCart] = useState([]);
+    const [fullCart, setCart] = useState({});
+
     const { user } = useContext(AuthContext);
     const [token, setToken] = useState('');
 
@@ -24,7 +25,7 @@ export default function CartProvider({ children }) {
                 }
             })
                 .then(res => res.json())
-                .then(data => setCart(data.result.cart))
+                .then(data => setCart(data.result))
                 .catch(error => console.log(error))
         }
     }, [token])
@@ -33,8 +34,9 @@ export default function CartProvider({ children }) {
         if (user?.email) {
             const userEmail = user.email;
             const cartData = {
-                userEmail,
-                cart
+                ...fullCart,
+                userEmail
+
             }
             console.log('update cart')
             fetch(`${process.env.URL}/api/cart/postCart`, {
@@ -48,10 +50,10 @@ export default function CartProvider({ children }) {
                 .then(data => console.log(data))
                 .catch(error => console.log(error))
         }
-    }, [cart.length])
+    }, [fullCart])
 
     const cartInfo = {
-        cart,
+        fullCart,
         setCart
     }
 
