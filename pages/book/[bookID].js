@@ -31,6 +31,13 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 		setBookReviews2(data);
 	}
 
+	const handleClick = e => {
+		console.log(e.target.id)
+		if (e.target.id === 'modal-container') {
+			setModalToggle(false)
+		}
+	}
+
 	const onSubmit = data => {
 		setIsLoading(true);
 		const reviewData = {
@@ -82,9 +89,10 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 	return (
 		<section className=" max-w-screen-lg mx-auto  mt-10 relative">
-			<div className={`z-10 opacity-95  left-0 top-0 w-full h-full overflow-auto bg-stone-700 ${modalToggle ? 'fixed' : 'hidden'}`}>
-				<ReadFewPages setModalToggle={setModalToggle} />
+			<div id='modal-container' onClick={handleClick} className={`z-10 opacity-95  left-0 top-0 w-full h-full overflow-auto bg-stone-700 ${modalToggle ? 'fixed' : 'hidden'}`}>
+				<ReadFewPages setModalToggle={setModalToggle} book={book} />
 			</div>
+
 			<div className="md:flex gap-6">
 				<div className="max-w-xs mx-auto sm:max-w-none p-6 border border-primary_color rounded-lg mb-4 md:mb-0">
 					<img
