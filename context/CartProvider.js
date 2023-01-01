@@ -8,6 +8,26 @@ export default function CartProvider({ children }) {
 
     const [cart, setCart] = useState([]);
     const { user } = useContext(AuthContext);
+    const [token, setToken] = useState('');
+
+    useEffect(() => {
+        if (user?.email) {
+            setToken(localStorage.getItem('lk-token'))
+        }
+    }, [user])
+
+    useEffect(() => {
+        if (token) {
+            fetch(`${process.env.URL}/api/cart/getCart?email=${user.email}`, {
+                headers: {
+                    authorization: `bearer ${token}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => setCart(data.result.cart))
+                .catch(error => console.log(error))
+        }
+    }, [token])
 
     useEffect(() => {
         if (cart.length) {
