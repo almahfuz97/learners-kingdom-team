@@ -22,6 +22,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const DynamicFeatured = dynamic(() => import('../components/FeaturedCategory/FeaturedCategory'), { loading: () => <div className='flex justify-center my-6'><Loading /></div>, ssr: false })
 
+
 const DynamicRecentlyAdded = dynamic(() => import('../components/RecentlyAdded/RecentlyAdded'), { loading: () => '', ssr: false })
 
 const DynamicPopularBooks = dynamic(() => import('../components/PopularBooks/PopularBooksContainer'), { loading: () => '', ssr: false })
