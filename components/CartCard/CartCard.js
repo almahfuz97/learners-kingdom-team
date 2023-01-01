@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import { FaRegTrashAlt } from "react-icons/fa";
 // import { getSingleBook } from '../../pages/api/util/getDataFromDB';
 
-const CartCard = ({ bookId }) => {
+const CartCard = ({ bookId, bookPrice, setBookPrice }) => {
 
     const [book, setBook] = useState({})
     useEffect(() => {
@@ -13,12 +13,23 @@ const CartCard = ({ bookId }) => {
             .catch(error => console.log(error))
     }, [])
 
+    useEffect(() => {
+        if (book.price) {
+            setBookPrice([...bookPrice, book.price])
+        }
+    }, [book])
+
     return (
         <div className='flex justify-between border-b-2 last:border-b-0 pb-3 mb-2 last:pb-0 last:mb-0'>
-            <div className='flex items-center gap-2'>
-                <div className='max-w-[100px] max-h-[130px] overflow-hidden'>
-                    <Image src={book.picture} width={100} height={130}></Image>
-                </div>
+            <div className='flex items-center gap-4'>
+                {
+                    book?.picture ?
+                        <div className='max-w-[100px] max-h-[130px] overflow-hidden'>
+                            <Image src={book.picture ? book.picture : ""} width={100} height={130} alt={book.bookName}></Image>
+                        </div>
+                        :
+                        <div className='max-w-[100px] max-h-[130px] bg-slate-300 animate-pulse'></div>
+                }
                 <div className='flex flex-col gap-4'>
                     <div>
                         <p className='text-lg sm:text-xl font-medium'>{book.bookName}</p>
