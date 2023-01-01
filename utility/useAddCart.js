@@ -1,7 +1,7 @@
 
 const useAddCart = (cart, setCart, id, price) => {
 
-    const checkBook = cart.find(book => book === id);
+    const checkBook = cart.find(book => book.bookId === id);
     const book = { bookId: id, price }
     if (checkBook) {
         alert("Book already added")
