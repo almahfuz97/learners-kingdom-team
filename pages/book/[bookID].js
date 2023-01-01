@@ -82,9 +82,8 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 			})
 	};
 
-	console.log(cart)
-	const handleAdd = (id) => {
-		useAddCart(cart, setCart, id);
+	const handleAdd = (id, price) => {
+		useAddCart(cart, setCart, id, price);
 	}
 
 	return (
@@ -128,7 +127,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 						{book.description}
 					</p>
 					<div className=' flex gap-6 md:flex-row flex-col my-6'>
-						<button onClick={() => handleAdd(book._id)} className="text-white bg-primary_color hover:bg-secondary_color px-8 font-semibold rounded py-3 ">
+						<button onClick={() => handleAdd(book._id, book.price)} className="text-white bg-primary_color hover:bg-secondary_color px-8 font-semibold rounded py-3 ">
 							Add To Cart
 						</button>
 						<button onClick={() => setModalToggle(prev => !prev)} className="text-primary_color border-2 border-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded ">

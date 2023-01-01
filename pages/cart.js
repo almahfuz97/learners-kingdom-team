@@ -7,13 +7,12 @@ import { CartContext } from "../context/CartProvider";
 const Cart = () => {
 
     const { cart, setCart } = useContext(CartContext);
-    const [bookPrice, setBookPrice] = useState([]);
-    const TotalPrice = bookPrice.reduce((a, b) => a + b, 0);
+    const TotalPrice = cart.reduce((a, b) => a + b.price, 0);
     const { user } = useContext(AuthContext);
     const router = useRouter();
 
     const handleDelete = (id) => {
-        const removeBook = cart.filter(bookId => bookId !== id)
+        const removeBook = cart.filter(bookId => bookId.bookId !== id)
         setCart(removeBook)
     }
 
@@ -24,7 +23,6 @@ const Cart = () => {
             cus_name: user.email,
             cus_email: user.name,
             cus_phone: user.phone,
-
         }
 
         fetch(`${process.env.URL}/api/payment/orders`, {
@@ -50,7 +48,7 @@ const Cart = () => {
                 <div className="flex-1 border border-gray-400 p-4 md:p-6">
                     {
                         cart.length ?
-                            cart.map(bookId => <CartCard key={bookId} bookId={bookId} bookPrice={bookPrice} setBookPrice={setBookPrice} handleDelete={handleDelete}></CartCard>)
+                            cart.map(bookData => <CartCard key={bookData.bookId} bookId={bookData.bookId} handleDelete={handleDelete}></CartCard>)
                             :
                             <p>Your Cart is Empty</p>
                     }
