@@ -1,6 +1,7 @@
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
-import AddTocardCard from "../components/addTocart/AddTocartCard";
 import CartCard from "../components/CartCard/CartCard";
+import { AuthContext } from "../context/AuthProvider";
 import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
@@ -8,10 +9,38 @@ const Cart = () => {
     const { cart, setCart } = useContext(CartContext);
     const [bookPrice, setBookPrice] = useState([]);
     const TotalPrice = bookPrice.reduce((a, b) => a + b, 0);
+    const { user } = useContext(AuthContext);
+    const router = useRouter();
 
     const handleDelete = (id) => {
         const removeBook = cart.filter(bookId => bookId !== id)
         setCart(removeBook)
+    }
+
+    const handlePaymentClick = () => {
+        console.log(cart)
+        const booksData = {
+            cart,
+            cus_name: user.email,
+            cus_email: user.name,
+            cus_phone: user.phone,
+
+        }
+
+        fetch(`${process.env.URL}/api/payment/orders`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booksData)
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.url) {
+                    window.open(data.url)
+                }
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -34,7 +63,7 @@ const Cart = () => {
                         </div>
                         <div className="flex flex-col sm:flex-row lg:flex-col justify-end gap-4 lg:mt-12">
                             <button onClick={() => setCart([])} className="px-6 py-2 border border-primary_color rounded-md ">Clear Cart</button>
-                            <button className="px-6 py-2 border border-primary_color rounded-md">Continue to Payment</button>
+                            <button onClick={handlePaymentClick} className="px-6 py-2 border border-primary_color rounded-md">Continue to Payment</button>
                         </div>
                     </div>
                 </aside>

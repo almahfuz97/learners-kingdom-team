@@ -19,7 +19,8 @@
     "react-hook-form": "^7.41.1",
     "react-icons": "^4.7.1",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "sslcommerz-lts": "^1.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
