@@ -20,7 +20,7 @@ const Category = ({ categories, books }) => {
     // console.log(searchedBook)
 
     return (
-        <section className="container max-w-screen-xl mx-auto">
+        <section className="container max-w-screen-xl mt-6 mx-auto">
 
             <div className=' flex justify-center mb-8'>
                 <SearchInput books={books}>
