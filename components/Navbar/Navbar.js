@@ -14,7 +14,7 @@ export default function Navbar() {
     }
     return (
         <div>
-            <nav className='  flex items-center justify-between p-8  bg-[#F4F2F3]  border-t-0 border-primary_color relative'>
+            <nav className='  flex items-center justify-between p-8  bg-slate-700 text-white  border-t-0 border-primary_color relative'>
                 <div>
                     <h1><span className='text-xl  md:text-2xl text-primary_color font-bold uppercase'>Learner's</span> <span className='text-xl md:text-2xl text-secondary_color font-bold uppercase'>Kingdom</span></h1>
                 </div>
