@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthProvider';
+import { CartContext } from "../../context/CartProvider";
 import Loading from '../Loader/Loading';
 
 export default function Navbar() {
     const [toggle, setToggle] = useState(false);
     const { user, logout, loading } = useContext(AuthContext);
-    console.log(loading)
+    const { cart } = useContext(CartContext);
 
     const handleToggle = () => {
         setToggle(prev => !prev);
@@ -27,7 +28,7 @@ export default function Navbar() {
                                     <>
                                         <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
                                         <li>{user.name}</li>
-                                        <Link className='hover:text-primary_color' href='/cart'> <li>  <img className='w-6' src="/cart.svg" alt="" /> </li></Link>
+                                        <Link className='hover:text-primary_color' href='/cart'><li className="relative"><img className='w-6' src="/cart.svg" alt="" /><span className="w-4 h-4 flex justify-center items-center absolute -top-1 -right-2 bg-green-600 text-white rounded-full text-xs font-bold">{cart?.length}</span></li></Link>
                                         <li className=' hover:text-primary_color cursor-pointer' onClick={() => logout()}>Logout</li>
                                     </>
                                     : <Link className=' hover:text-primary_color' href="/login"><li>Login</li></Link>
