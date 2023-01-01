@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
     if (result.modifiedCount > 0) {
 
-        res.redirect(`${process.env.URL}/payment/success?transactionId=${req.query.transactionId}`)
+        res.redirect(`${process.env.URL}/payment/success?transactionId=${req.query.transactionId}&price=${req.query.price}`)
     }
     else {
         res.redirect(`${process.env.URL}/payment/fail`)
