@@ -1,43 +1,33 @@
 import AddTocardCard from "../components/addTocart/AddTocartCard";
 
-
-const AddTocart = () => {
-
+const Cart = () => {
 
     return (
-        <div className="flex flex-col  p-6 space-y-4 sm:p-10 divide-y">
-            <h2 className="text-xl font-semibold">Your Book cart</h2>
-
-
-
-            <AddTocardCard></AddTocardCard>
-            <AddTocardCard></AddTocardCard>
-            <AddTocardCard></AddTocardCard>
-            <AddTocardCard></AddTocardCard>
-            <AddTocardCard></AddTocardCard>
-
-
-
-            <div className="text-right ">
-                <p className="mt-2">Total amount:
-                    <span className="font-semibold">$350</span>
-                </p>
-
-            </div>
-
-            <div>
-                <div className="flex justify-end my-5 ">
-
-                    <button type="button" className="px-6 py-2 border rounded-md ">Back to Home
-
-                    </button>
-                    <button type="button" className="px-6 py-2 border rounded-md">
-                        Continue to Payment
-                    </button>
+        <div className="max-w-screen-lg mx-auto mt-8">
+            <h2 className="text-2xl font-semibold mb-4">Your Book Cart</h2>
+            <div className="lg:flex gap-6 relative items-start">
+                <div className="flex-1 border border-gray-400 p-6">
+                    <AddTocardCard></AddTocardCard>
+                    <AddTocardCard></AddTocardCard>
+                    <AddTocardCard></AddTocardCard>
+                    <AddTocardCard></AddTocardCard>
+                    <AddTocardCard></AddTocardCard>
                 </div>
+
+                <aside className="w-full lg:w-[280px] border border-gray-400 p-6 sticky top-6">
+                    <div>
+                        <div className="text-right mb-8 text-lg max-w-xs ml-auto">
+                            <p className="flex justify-between">Total amount:<span className="font-semibold"> $350</span></p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row lg:flex-col justify-end gap-4 lg:mt-12">
+                            <button className="px-6 py-2 border border-primary_color rounded-md ">Back to Home</button>
+                            <button className="px-6 py-2 border border-primary_color rounded-md">Continue to Payment</button>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
     );
 };
 
-export default AddTocart;
+export default Cart;

@@ -7,13 +7,16 @@ import Loading from '../../components/Loader/Loading';
 import ReadFewPages from '../../components/Modals/ReadFewPages/ReadFewPages';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
 import { AuthContext } from '../../context/AuthProvider';
+import { CartContext } from '../../context/CartProvider';
+import useAddCart from '../../utility/useAddCart';
 import { getCategoryWiseBooks, getSingleBook, getSpecificBookReviews } from '../api/util/getDataFromDB';
 
 
 const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 	const [bookReviews2, setBookReviews2] = useState(bookReviews);
-	const [id, setId] = useState(book._id)
+	const [id, setId] = useState(book._id);
+	const { cart, setCart } = useContext(CartContext);
 	const [modalToggle, setModalToggle] = useState(false);
 
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -27,6 +30,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 		console.log(data)
 		setBookReviews2(data);
 	}
+
 	const onSubmit = data => {
 		setIsLoading(true);
 		const reviewData = {
@@ -71,6 +75,11 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 			})
 	};
 
+	console.log(cart)
+	const handleAdd = (id) => {
+		useAddCart(cart, setCart, id);
+	}
+
 	return (
 		<section className=" max-w-screen-lg mx-auto  mt-10 relative">
 			<div className={`z-10 opacity-95  left-0 top-0 w-full h-full overflow-auto bg-stone-700 ${modalToggle ? 'fixed' : 'hidden'}`}>
@@ -111,7 +120,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 						{book.description}
 					</p>
 					<div className=' flex gap-6 md:flex-row flex-col my-6'>
-						<button className="text-white bg-primary_color hover:bg-secondary_color px-8 font-semibold rounded py-3 ">
+						<button onClick={() => handleAdd(book._id)} className="text-white bg-primary_color hover:bg-secondary_color px-8 font-semibold rounded py-3 ">
 							Add To Cart
 						</button>
 						<button onClick={() => setModalToggle(prev => !prev)} className="text-primary_color border-2 border-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded ">
