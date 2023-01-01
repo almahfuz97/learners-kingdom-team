@@ -1,20 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'i.ibb.co',
-        port: '',
-        pathname: '/**/**',
-      },
-    ],
-  },
-}
+// const nextConfig = {
+//   reactStrictMode: true,
+// }
 
 module.exports = {
-  nextConfig,
+  reactStrictMode: true,
   images: {
     remotePatterns: [
       {
@@ -28,8 +18,6 @@ module.exports = {
   env: {
     URL: 'http://localhost:3000',
   },
-
-
 };
 
 // module.exports = {
