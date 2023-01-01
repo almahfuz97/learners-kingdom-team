@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import BookReveiwsContainer from '../../components/BookReviews/BookReveiwsContainer';
 import Loading from '../../components/Loader/Loading';
+import ReadFewPages from '../../components/Modals/ReadFewPages/ReadFewPages';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
 import { AuthContext } from '../../context/AuthProvider';
 import { getCategoryWiseBooks, getSingleBook, getSpecificBookReviews } from '../api/util/getDataFromDB';
@@ -13,6 +14,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 	const [bookReviews2, setBookReviews2] = useState(bookReviews);
 	const [id, setId] = useState(book._id)
+	const [modalToggle, setModalToggle] = useState(false);
 
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const { user, loading } = useContext(AuthContext);
@@ -54,7 +56,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 				if (data.insertedId) {
 					// alert('Review added successfully!')
 					setId(book._id)
-					refresh(book._id);
+					refresh();
 				}
 				setIsLoading(false)
 				reset();
@@ -70,7 +72,10 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 	};
 
 	return (
-		<section className="container max-w-screen-lg mx-auto mt-10">
+		<section className=" max-w-screen-lg mx-auto  mt-10 relative">
+			<div className={`z-10 opacity-95  left-0 top-0 w-full h-full overflow-auto bg-stone-700 ${modalToggle ? 'fixed' : 'hidden'}`}>
+				<ReadFewPages setModalToggle={setModalToggle} />
+			</div>
 			<div className="md:flex gap-6">
 				<div className="max-w-xs mx-auto sm:max-w-none p-6 border border-primary_color rounded-lg mb-4 md:mb-0">
 					<img
@@ -105,9 +110,15 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 						</span>{' '}
 						{book.description}
 					</p>
-					<button className="text-white bg-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded my-6">
-						Add To Cart
-					</button>
+					<div className=' flex gap-6 md:flex-row flex-col my-6'>
+						<button className="text-white bg-primary_color hover:bg-secondary_color px-8 font-semibold rounded py-3 ">
+							Add To Cart
+						</button>
+						<button onClick={() => setModalToggle(prev => !prev)} className="text-primary_color border-2 border-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded ">
+							Read few Pages
+						</button>
+
+					</div>
 					<p className="mb-1">
 						<span className="text-gray-600 font-medium">
 							Category:{' '}
