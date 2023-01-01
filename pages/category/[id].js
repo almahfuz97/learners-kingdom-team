@@ -1,13 +1,16 @@
 import { ObjectId } from 'bson';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Loading from '../../components/Loader/Loading';
+import SearchInput from '../../components/SearchInput/SearchInput';
 import SimilarBooksCard from '../../components/SimilarBooksCard/SimilarBooksCard';
 import { getCategories, getCategoryWiseBooks, getSingleCategory } from '../api/util/getDataFromDB';
 
 
 const Category = ({ books, categories, loadingData, singleCategory }) => {
     const [loading, setLoading] = useState(true);
+
     console.log(books, singleCategory)
     useEffect(() => {
         setLoading(false)
@@ -15,6 +18,10 @@ const Category = ({ books, categories, loadingData, singleCategory }) => {
 
     return (
         <section className="container max-w-screen-xl mx-auto mt-6">
+            <div className=' flex justify-center mb-8'>
+                <SearchInput books={books}>
+                </SearchInput>
+            </div>
             <div className='text-center text-xl my-6'>
                 <h1><span className='text-primary_color font-bold'>{books.length}</span> Books found in <span className='text-primary_color font-bold'>{singleCategory.category_name}</span> Category</h1>
             </div>

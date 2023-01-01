@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Loading from "../../components/Loader/Loading";
+import SearchInput from "../../components/SearchInput/SearchInput";
 import SimilarBooksCard from "../../components/SimilarBooksCard/SimilarBooksCard";
 import { getBooks, getCategories } from "../api/util/getDataFromDB";
 
@@ -20,6 +21,11 @@ const Category = ({ categories, books }) => {
 
     return (
         <section className="container max-w-screen-xl mx-auto">
+
+            <div className=' flex justify-center mb-8'>
+                <SearchInput books={books}>
+                </SearchInput>
+            </div>
             <div className='text-center text-xl my-6'>
                 {
                     searchText ?

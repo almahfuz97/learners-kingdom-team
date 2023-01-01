@@ -6,35 +6,7 @@ import SearchCard from '../SearchInput/SearchCard';
 import SearchInput from '../SearchInput/SearchInput';
 
 export default function Banner({ books }) {
-    // console.log(books)
-    const [text, setText] = useState('');
-    const { register, handleSubmit, watch } = useForm();
-    const [searchedBook, setSearchedBook] = useState();
     const router = useRouter();
-
-    // console.log("here", searchedBook)
-    const handleKeyUp = e => {
-        console.log(e.key)
-        if (e.key === 'Enter') {
-            router.push({
-                pathname: '/category',
-                query: {
-                    searchText: watch('search')
-                }
-            })
-        }
-    }
-    // console.log(searchedBook);
-    useEffect(() => {
-        const searchText = watch('search');
-        const result = books.filter(book => book.bookName.toLowerCase().includes(searchText.toLowerCase()) || book.authorName.toLowerCase().includes(searchText.toLowerCase()));
-        if (watch('search') === '') setSearchedBook(null);
-        else {
-            setSearchedBook(result);
-        }
-
-    }, [watch('search')])
-
     return (
         <div className=' relative img-gradient'>
             <Image src={'https://i.ibb.co/KVqN4n7/3025.jpg'} width={2000} height={800} className='w-full h-full' alt='' />
@@ -47,8 +19,7 @@ export default function Banner({ books }) {
 
             <div className=' absolute w-full top-[40%]  z-10'>
                 <div className=' flex justify-center'>
-
-                    <SearchInput handleKeyUp={handleKeyUp} register={register} watch={watch} searchedBook={searchedBook} />
+                    <SearchInput books={books} />
                 </div>
 
             </div>

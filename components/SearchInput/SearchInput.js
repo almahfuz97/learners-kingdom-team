@@ -1,8 +1,36 @@
 import Image from 'next/image'
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form';
 import SearchCard from './SearchCard'
 
-export default function SearchInput({ register, watch, searchedBook, handleKeyUp }) {
+export default function SearchInput({ books }) {
+    const [searchedBook, setSearchedBook] = useState();
+    const { register, handleSubmit, watch } = useForm();
+    const router = useRouter();
+
+    const handleKeyUp = e => {
+        console.log(e.key)
+        if (e.key === 'Enter') {
+            router.push({
+                pathname: '/category',
+                query: {
+                    searchText: watch('search')
+                }
+            })
+        }
+    }
+
+
+    useEffect(() => {
+        const searchText = watch('search');
+        const result = books.filter(book => book.bookName.toLowerCase().includes(searchText.toLowerCase()) || book.authorName.toLowerCase().includes(searchText.toLowerCase()));
+        if (watch('search') === '') setSearchedBook(null);
+        else {
+            setSearchedBook(result);
+        }
+
+    }, [watch('search')])
     return (
         <>
             <div className=' flex lg:mt-4'>
