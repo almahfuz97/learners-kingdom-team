@@ -136,12 +136,12 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 						</button>
 
 					</div>
-					<p className="mb-1">
+					{/* <p className="mb-1">
 						<span className="text-gray-600 font-medium">
 							Category:{' '}
 						</span>
 						{book?.categoryName}
-					</p>
+					</p> */}
 					{/* <p><span className="text-gray-600 font-medium">Tags: </span>{book.tags.join(', ')}</p> */}
 				</div>
 			</div>

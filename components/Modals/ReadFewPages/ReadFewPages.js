@@ -11,7 +11,7 @@ export default function ReadFewPages({ setModalToggle, book }) {
 
             <h2 className="text-2xl text-primary_color mb-2 text-start font-semibold leading-tight tracking-wide">{book.bookName}</h2>
             <p className='mb-4 text-black'>{book.authorName}</p>
-            <p className=" text-start text-slate-700">{book.bookContent} </p>
+            <p className=" text-start text-slate-700">{book.bookContent.slice(0, 2000)} </p>
         </div>
     )
 }

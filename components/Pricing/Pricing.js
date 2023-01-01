@@ -1,5 +1,6 @@
 
 const Pricing = () => {
+  console.log('priceing')
   return (
     <div className="sans h-full my-20">
       <header className="flex flex-col items-center mb-6">
