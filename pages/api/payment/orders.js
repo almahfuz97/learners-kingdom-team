@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         let price = 0;
 
         for (let i = 0; i < cart.length; i++) {
-            const result = await db.collection('books').findOne({ _id: ObjectId(cart[i]) });
+            const result = await db.collection('books').findOne({ _id: ObjectId(cart[i].bookId) });
             if (result) {
                 price = price + result.price;
                 orderedBooks.push(result)
