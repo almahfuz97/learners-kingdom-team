@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const CartCard = ({ bookId, bookPrice, setBookPrice, handleDelete }) => {
+const CartCard = ({ bookId, handleDelete }) => {
 
     const [book, setBook] = useState({})
     useEffect(() => {
@@ -11,12 +11,6 @@ const CartCard = ({ bookId, bookPrice, setBookPrice, handleDelete }) => {
             .then(data => setBook(data))
             .catch(error => console.log(error))
     }, [])
-
-    useEffect(() => {
-        if (book.price) {
-            setBookPrice([...bookPrice, book.price])
-        }
-    }, [book])
 
     return (
         <div className='flex justify-between border-b-2 last:border-b-0 pb-3 mb-2 last:pb-0 last:mb-0'>
