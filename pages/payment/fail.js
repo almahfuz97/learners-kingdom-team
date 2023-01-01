@@ -3,8 +3,7 @@ import React from 'react'
 export default function Fail() {
     return (
         <div>
-            failed
-
+            Something Went Wrong!
         </div>
     )
 }

@@ -30,13 +30,14 @@ export default async function handler(req, res) {
         }
         console.log(price);
         // return res.json({ success: paymentInfo });
+        const transactionId = new ObjectId().toString();
         const data = {
             total_amount: price,
             currency: 'USD',
-            tran_id: new ObjectId().toString(), // use unique tran_id for each api call
-            success_url: `${process.env.URL}/payment/success`,
-            fail_url: `${process.env.URL}/payment/fail`,
-            cancel_url: `${process.env.URL}/payment/cancel`,
+            tran_id: transactionId, // use unique tran_id for each api call
+            success_url: `${process.env.URL}/api/payment/success?transactionId=${transactionId}&price=${price}`,
+            fail_url: `${process.env.URL}/api/payment/fail?transactionId=${transactionId}`,
+            cancel_url: `${process.env.URL}/api/payment/cancel`,
             ipn_url: 'http://localhost:3030/ipn',
             shipping_method: 'Courier',
             product_name: 'Books',
@@ -61,10 +62,16 @@ export default async function handler(req, res) {
             ship_country: 'Bangladesh',
         };
         const sslcz = new SSLCommerzPayment(process.env.Store_ID, process.env.Store_Password, is_live)
-        sslcz.init(data).then(apiResponse => {
+        sslcz.init(data).then(async (apiResponse) => {
             // Redirect the user to payment gateway
             let GatewayPageURL = apiResponse.GatewayPageURL
-
+            await db.collection('orders').insertOne({
+                books: [...cart],
+                totalPrice: price,
+                transactionId,
+                paid: false,
+                cus_email
+            })
             res.json({ url: GatewayPageURL })
             console.log('Redirecting to: ', GatewayPageURL)
         });
