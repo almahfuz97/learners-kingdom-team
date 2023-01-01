@@ -20,8 +20,8 @@ const Cart = () => {
         console.log(cart)
         const booksData = {
             cart,
-            cus_name: user.email,
-            cus_email: user.name,
+            cus_email: user.email,
+            cus_name: user.name,
             cus_phone: user.phone,
         }
 
