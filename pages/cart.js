@@ -6,8 +6,7 @@ import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
 
-    const { fullCart, setCart } = useContext(CartContext);
-    const { cart } = fullCart;
+    const { cart, setCart } = useContext(CartContext);
     const [bookPrice, setBookPrice] = useState([]);
     const TotalPrice = bookPrice.reduce((a, b) => a + b, 0);
     const { user } = useContext(AuthContext);

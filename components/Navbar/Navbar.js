@@ -7,8 +7,7 @@ import Loading from '../Loader/Loading';
 export default function Navbar() {
     const [toggle, setToggle] = useState(false);
     const { user, logout, loading } = useContext(AuthContext);
-    const { fullCart } = useContext(CartContext);
-    const { cart } = fullCart
+    const { cart } = useContext(CartContext);
 
     const handleToggle = () => {
         setToggle(prev => !prev);
