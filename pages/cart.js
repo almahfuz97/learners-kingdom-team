@@ -1,13 +1,43 @@
+import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import AddTocardCard from "../components/addTocart/AddTocartCard";
 import CartCard from "../components/CartCard/CartCard";
+import { AuthContext } from "../context/AuthProvider";
 import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
 
     const { cart } = useContext(CartContext);
+    const { user } = useContext(AuthContext);
     const [bookPrice, setBookPrice] = useState([]);
+    const router = useRouter();
     console.log(bookPrice)
+
+    const handlePaymentClick = () => {
+        console.log(cart)
+        const booksData = {
+            cart,
+            cus_name: user.email,
+            cus_email: user.name,
+            cus_phone: user.phone,
+
+        }
+
+        fetch(`${process.env.URL}/api/payment/orders`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booksData)
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.url) {
+                    window.open(data.url)
+                }
+            })
+            .catch(err => console.log(err))
+    }
 
     return (
         <div className="max-w-screen-lg mx-auto mt-8">
@@ -29,7 +59,7 @@ const Cart = () => {
                         </div>
                         <div className="flex flex-col sm:flex-row lg:flex-col justify-end gap-4 lg:mt-12">
                             <button className="px-6 py-2 border border-primary_color rounded-md ">Back to Home</button>
-                            <button className="px-6 py-2 border border-primary_color rounded-md">Continue to Payment</button>
+                            <button onClick={handlePaymentClick} className="px-6 py-2 border border-primary_color rounded-md">Continue to Payment</button>
                         </div>
                     </div>
                 </aside>
