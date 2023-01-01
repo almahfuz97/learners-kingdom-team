@@ -54,7 +54,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 				if (data.insertedId) {
 					// alert('Review added successfully!')
 					setId(book._id)
-					refresh();
+					refresh(book._id);
 				}
 				setIsLoading(false)
 				reset();
