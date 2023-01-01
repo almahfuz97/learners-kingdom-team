@@ -1,19 +1,23 @@
+import { useContext } from "react";
 import AddTocardCard from "../components/addTocart/AddTocartCard";
 import CartCard from "../components/CartCard/CartCard";
+import { CartContext } from "../context/CartProvider";
 
 const Cart = () => {
+
+    const { cart } = useContext(CartContext);
 
     return (
         <div className="max-w-screen-lg mx-auto mt-8">
             <h2 className="text-2xl font-semibold mb-4">Your Book Cart</h2>
             <div className="lg:flex gap-6 relative items-start">
                 <div className="flex-1 border border-gray-400 p-4 md:p-6">
-                    <CartCard></CartCard>
-                    <AddTocardCard></AddTocardCard>
-                    <AddTocardCard></AddTocardCard>
-                    <AddTocardCard></AddTocardCard>
-                    <AddTocardCard></AddTocardCard>
-                    <AddTocardCard></AddTocardCard>
+                    {
+                        cart.length ?
+                            cart.map(bookId => <CartCard key={bookId} bookId={bookId}></CartCard>)
+                            :
+                            <p>Your Cart is Empty</p>
+                    }
                 </div>
 
                 <aside className="w-full lg:w-[280px] border border-gray-400 p-6 sticky top-6">
