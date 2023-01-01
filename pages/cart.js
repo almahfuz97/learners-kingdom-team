@@ -1,4 +1,5 @@
 import AddTocardCard from "../components/addTocart/AddTocartCard";
+import CartCard from "../components/CartCard/CartCard";
 
 const Cart = () => {
 
@@ -6,7 +7,8 @@ const Cart = () => {
         <div className="max-w-screen-lg mx-auto mt-8">
             <h2 className="text-2xl font-semibold mb-4">Your Book Cart</h2>
             <div className="lg:flex gap-6 relative items-start">
-                <div className="flex-1 border border-gray-400 p-6">
+                <div className="flex-1 border border-gray-400 p-4 md:p-6">
+                    <CartCard></CartCard>
                     <AddTocardCard></AddTocardCard>
                     <AddTocardCard></AddTocardCard>
                     <AddTocardCard></AddTocardCard>
