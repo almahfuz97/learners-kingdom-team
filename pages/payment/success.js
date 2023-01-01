@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import { FaBook, FaRegSmile, FaShoppingCart, FaUsers, Facorrec } from "react-icons/fa";
 
 export default function Success() {
     const router = useRouter();
