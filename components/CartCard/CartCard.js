@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import React, { lazy, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegTrashAlt } from "react-icons/fa";
-// import { getSingleBook } from '../../pages/api/util/getDataFromDB';
 
-const CartCard = ({ bookId, bookPrice, setBookPrice }) => {
+const CartCard = ({ bookId, bookPrice, setBookPrice, handleDelete }) => {
 
     const [book, setBook] = useState({})
     useEffect(() => {
@@ -43,7 +42,7 @@ const CartCard = ({ bookId, bookPrice, setBookPrice }) => {
             </div>
             <div className='sm:flex items-center gap-2 sm:gap-6 text-lg hidden'>
                 <p>$<span className='font-medium'>{book.price}</span></p>
-                <button className='hover:bg-red-100 p-2 rounded-full text-red-600 hover:scale-110 cursor-pointer transition'><FaRegTrashAlt title='Remove' className=''></FaRegTrashAlt></button>
+                <button onClick={() => handleDelete(bookId)} className='hover:bg-red-100 p-2 rounded-full text-red-600 hover:scale-110 cursor-pointer transition'><FaRegTrashAlt title='Remove' className=''></FaRegTrashAlt></button>
             </div>
         </div>
     );
