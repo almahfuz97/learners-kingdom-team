@@ -12,7 +12,7 @@ const Footer = () => {
                     The more you read, the more you grow. Find your desired books in one place.
                 </p>
 
-                <nav aria-label="Footer Nav" className="mt-12 text-white">
+                <nav aria-label="Footer Nav" className="mt-12 text-white font-medium">
                     <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
                         <li>
                             <a className=" transition hover:text-primary_color" href="/">
@@ -54,7 +54,7 @@ const Footer = () => {
 
                 <ul className="mt-12 flex justify-center gap-6 md:gap-8 text-white">
                     <li className='hover:scale-110'>
-                        <a href="/" rel="noreferrer" target="_blank" className="text-primary_color/90 transition hover:text-primary_color">
+                        <a href="/" rel="noreferrer" target="_blank" className="text-secondary_color/90 transition hover:text-secondary_color">
                             <span className="sr-only">Facebook</span>
                             <svg
                                 className="h-6 w-6"
@@ -72,7 +72,7 @@ const Footer = () => {
                     </li>
 
                     <li className='hover:scale-110'>
-                        <a href="/" rel="noreferrer" target="_blank" className="text-primary_color/90 transition hover:text-primary_color">
+                        <a href="/" rel="noreferrer" target="_blank" className="text-secondary_color/90 transition hover:text-secondary_color">
                             <span className="sr-only">Instagram</span>
                             <svg
                                 className="h-6 w-6"
@@ -90,7 +90,7 @@ const Footer = () => {
                     </li>
 
                     <li className='hover:scale-110'>
-                        <a href="/" rel="noreferrer" target="_blank" className="text-primary_color/90 transition hover:text-primary_color">
+                        <a href="/" rel="noreferrer" target="_blank" className="text-secondary_color/90 transition hover:text-secondary_color">
                             <span className="sr-only">Twitter</span>
                             <svg
                                 className="h-6 w-6"
@@ -106,7 +106,7 @@ const Footer = () => {
                     </li>
 
                     <li className='hover:scale-110'>
-                        <a href="/" rel="noreferrer" target="_blank" className="text-primary_color/90 transition hover:text-primary_color">
+                        <a href="/" rel="noreferrer" target="_blank" className="text-secondary_color/90 transition hover:text-secondary_color">
                             <span className="sr-only">GitHub</span>
                             <svg
                                 className="h-6 w-6"
@@ -127,11 +127,11 @@ const Footer = () => {
             <div className="border-t border-primary_color p-6 text-white">
                 <div className="text-center sm:flex sm:justify-between sm:text-left">
                     <p className="text-sm ">
-                        <a className="inline-block text-teal-600 underline transition hover:text-primary_color" href="/">
+                        <a className="inline-block text-secondary_color underline transition hover:text-primary_color" href="/">
                             Terms & Conditions
                         </a>
                         <span> &middot; </span>
-                        <a className="inline-block text-teal-600 underline transition hover:text-primary_color" href="/">
+                        <a className="inline-block text-secondary_color underline transition hover:text-primary_color" href="/">
                             Privacy Policy
                         </a>
                     </p>
