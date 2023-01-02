@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import React, { Children, useContext } from 'react'
 import Loading from '../components/Loader/Loading';
 import { AuthContext } from '../context/AuthProvider';
-import { BsBook } from 'react-icons/bs'
+import { BsBook, BsFillCartCheckFill } from 'react-icons/bs'
+import { CgProfile } from 'react-icons/cg'
 export default function DashboardLayout({ children }) {
 
     const { loading, user, logout } = useContext(AuthContext);
@@ -17,7 +18,7 @@ export default function DashboardLayout({ children }) {
 
     return (
 
-        <div className='flex gap-6   '>
+        <div className='flex gap-6  relative'>
             <style jsx>
                 {
                     `
@@ -27,11 +28,48 @@ export default function DashboardLayout({ children }) {
                     .width2 {
                         width: 100%;
                     }
+                    .bottombar {
+                        overflow: hidden;
+                        background-color: #7E62C1;
+                        position: fixed;
+                        bottom: 0;
+                        width: 100%;
+                      }
                     `
                 }
             </style>
+            <div className={`bottombar p-4 md:hidden bg-primary_color z-10`}>
+                <div className=' flex justify-between bg-primary_color'>
+                    <Link href={'/dashboard/purchased'}>
+                        {
+                            router.asPath === `/dashboard/purchased`
+                                ? <BsBook fontSize={24} color={'#00FF00'}></BsBook>
+                                : <BsBook fontSize={24} color={'#ffffff'}></BsBook>
+
+
+                        }
+                    </Link>
+
+                    <Link href={`/dashboard/orders?email=${user?.email}`}>
+                        {
+                            router.asPath === `/dashboard/orders?email=${user?.email}` ? <BsFillCartCheckFill fontSize={24} color={'#00FF00'}>
+                            </BsFillCartCheckFill> : <BsFillCartCheckFill fontSize={24} color={'#ffffff'}>
+                            </BsFillCartCheckFill>
+                        }
+
+                    </Link>
+                    <Link href={'/dashboard/profile'} className='cursor-pointer'>
+                        {
+                            router.asPath === '/dashboard/profile' ? <CgProfile fontSize={24} color={'#00FF00'}></CgProfile> : <CgProfile fontSize={24} color={'#ffffff'}></CgProfile>
+                        }
+
+                    </Link>
+
+                </div>
+            </div>
             <div className='width1  bg-secondary_color/0 border-r-2 shadow'>
-                {/* <Link href={'/dashboard/profile'} className={`gap-2 flex px-8 py-4 items-center ${router.asPath === '/dashboard/profile' && 'bg-primary_color text-white'}`}>
+
+                <div className="h-full p-3 space-y-2 w-60">{/* <Link href={'/dashboard/profile'} className={`gap-2 flex px-8 py-4 items-center ${router.asPath === '/dashboard/profile' && 'bg-primary_color text-white'}`}>
                     <img src="/avatar.png" alt="" />
                     <h3>{user?.name}</h3>
                 </Link>
@@ -43,7 +81,6 @@ export default function DashboardLayout({ children }) {
                     <img src="/book.png" alt="" className='border w-8 h-8 shadow-lg rounded-lg p-px' />
                     <h3 className=' font-bold uppercase'>Purchased Books</h3>
                 </Link> */}
-                <div className="h-full p-3 space-y-2 w-60">
                     <div className="flex items-center p-2 space-x-4">
                         <img src={`https://avatars.dicebear.com/v2/avataaars/${user.name}.svg?options[mood][]=happy`} alt="" className="w-12 h-12 rounded-full bg-primary_color" />
                         <div>

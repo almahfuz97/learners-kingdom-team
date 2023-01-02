@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic'
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <div className='overflow-x-hidden'>
       <AuthProvider>
         <CartProvider>
           <MainLayout>
@@ -25,6 +25,6 @@ export default function App({ Component, pageProps }) {
           </MainLayout>
         </CartProvider>
       </AuthProvider>
-    </>
+    </div>
   )
 }
