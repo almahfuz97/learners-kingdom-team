@@ -1,10 +1,12 @@
-import { useRouter } from "next/router";
-const RecentlyAddedCard = ({ data }) => {
-    const router = useRouter();
-    return (
-        <div className=" mx-2 lg:my-8 w-xs drop-shadow-lg bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl ">
+import Link from "next/link";
+import { FaCartPlus, IconName } from "react-icons/fa";
 
-            <img src={data.picture} alt="book" className="object-cover object-center w-full rounded-md h-80" />
+const RecentlyAddedCard = ({ data }) => {
+
+    return (
+        <div className="mx-4 lg:my-8 bg-white shadow-md shadow-primary_color/30 rounded-xl duration-500 hover:scale-105 hover:shadow-xl ">
+
+            <img src={data.picture} alt="book" className="object-cover object-center w-full rounded-t-md h-80" />
             <div className="px-4 py-3">
 
                 <div className="mt-2 mb-2 ">
@@ -13,12 +15,10 @@ const RecentlyAddedCard = ({ data }) => {
                     </div>
                     <span className="block text-xs font-medium tracking-widest">{data.authorName}</span>
                 </div>
-                <p className=" opacity-50 text-xs">{data.description.slice(0, 60)}</p>
-                <p className="text-md mt-2 tracking-wide">Price: ${data.price}</p>
-                <div className="flex justify-between mt-6 text-white">
-                    <button onClick={() => router.push(`/book/${data._id},${data.categoryID}`)} className="px-4 py-3 font-semibold text-slate-500 hover:text-white rounded hover:bg-primary_color bg-secondary_color">Details</button>
-
-                    <img src="/add.png" alt="" className="w-12 cursor-pointer hover:scale-105" />
+                <p className="mt-2 tracking-wide">Price: <span className="text-rose-600 font-bold text-lg">${data.price}</span></p>
+                <div className="flex justify-between mt-4 text-primary_color">
+                    <Link href={`/book/${data._id},${data.categoryID}`} className="w-1/2 px-4 py-2 font-semibold text-center rounded border-2 border-primary_color hover:bg-primary_color hover:text-white"><button>Details</button></Link>
+                    <button className="text-2xl rounded px-4 border-2 border-primary_color hover:bg-primary_color hover:text-white"><FaCartPlus></FaCartPlus></button>
                 </div>
             </div>
 
