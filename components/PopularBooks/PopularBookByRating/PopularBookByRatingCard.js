@@ -41,8 +41,8 @@ const PopularBookByRatingCard = ({ book }) => {
 				</h3>
 			</div>
 			<div id="actions" className="mt-4 flex text-white text-center font-medium gap-4">
-				<Link href={`/book/${book._id},${book.categoryID}`} className="flex-1 max-w-xs bg-secondary_color hover:bg-secondary_color/80 px-4 py-3 rounded-md "><button>Details</button></Link>
-				<button onClick={() => handleAdd(book._id, book.price)} className="bg-primary_color hover:bg-primary_color/80 px-8 py-3 rounded-md text-2xl"><FaCartPlus></FaCartPlus></button>
+				<Link href={`/book/${book._id},${book.categoryID}`} title="Details" className="flex-1 max-w-xs bg-secondary_color hover:bg-secondary_color/80 px-4 py-3 rounded-md "><button>Details</button></Link>
+				<button onClick={() => handleAdd(book._id, book.price)} title="Add to cart" className="bg-primary_color hover:bg-primary_color/80 px-8 py-3 rounded-md text-2xl"><FaCartPlus></FaCartPlus></button>
 			</div>
 		</div>
 	);
