@@ -4,12 +4,9 @@ import { useRouter } from "next/router";
 const MostSoldBookCard = ({ book }) => {
 
 	return (
-		<div className="p-4 rounded-md shadow-md hover:scale-[1.03] duration-500">
-			<div id="image">
-				<img
-					src={book.picture}
-					className="object-cover object-center w-full rounded-md h-80"
-				/>
+		<div className="p-4 rounded-md shadow-md shadow-primary_color/40 group">
+			<div id="image" className="overflow-hidden rounded-md">
+				<img src={book.picture} className="object-cover object-center w-full rounded-md h-80 group-hover:scale-105 duration-300" />
 			</div>
 			<div id="information" className="flex items-center justify-between mt-4 gap-2">
 				<div>
@@ -41,8 +38,8 @@ const MostSoldBookCard = ({ book }) => {
 				</h3>
 			</div>
 			<div id="actions" className="mt-4 flex text-white text-center font-medium gap-4">
-				<Link href={`/book/${book._id},${book.categoryID}`} className="flex-1 bg-secondary_color px-3 py-2 rounded-md "><button>Details</button></Link>
-				<button className="flex-1 bg-primary_color px-3 py-2 rounded-md">Book Now</button>
+				<Link href={`/book/${book._id},${book.categoryID}`} className="flex-1 bg-secondary_color hover:bg-secondary_color/80 px-3 py-2 rounded-md "><button>Details</button></Link>
+				<button className="flex-1 bg-primary_color hover:bg-primary_color/80 px-3 py-2 rounded-md">Order</button>
 			</div>
 		</div>
 	);

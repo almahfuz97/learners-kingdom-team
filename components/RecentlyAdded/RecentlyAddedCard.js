@@ -4,7 +4,7 @@ import { FaCartPlus, IconName } from "react-icons/fa";
 const RecentlyAddedCard = ({ data }) => {
 
     return (
-        <div className="mx-4 bg-white shadow-md shadow-primary_color/30 rounded-xl duration-500 hover:scale-105 hover:shadow-xl ">
+        <div className="m-4 bg-white shadow-md shadow-primary_color/40 rounded-xl duration-300 hover:scale-105 hover:shadow-xl ">
 
             <img src={data.picture} alt="book" className="object-cover object-center w-full rounded-t-md h-80" />
             <div className="px-4 py-3">

@@ -2,7 +2,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import RecentlyAddedCard from "../RecentlyAdded/RecentlyAddedCard";
-import { FaAngleLeft, FaAngleRight, IconName } from "react-icons/fa";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 export default function BookCardSlider({ data }) {
     let slider;
