@@ -18,7 +18,6 @@ export default function Orders({ orders }) {
                                 <th className="p-3">Total Books</th>
                                 <th className="p-3">Issued</th>
                                 <th className="p-3 text-right">Amount</th>
-
                             </tr>
                         </thead>
                         <tbody>

@@ -43,7 +43,10 @@ export default function DashboardLayout({ children }) {
                     <Link href={'/dashboard/purchased'}>
                         {
                             router.asPath === `/dashboard/purchased`
-                                ? <BsBook fontSize={24} color={'#00FF00'}></BsBook>
+                                ? <div className='bg-white items-center flex gap-1 px-4 py-2 rounded-full'>
+                                    <span className=' text-xs text-primary_color'>Books</span>
+                                    <BsBook fontSize={16} color={'#7E62C1'}></BsBook>
+                                </div>
                                 : <BsBook fontSize={24} color={'#ffffff'}></BsBook>
 
                         }
@@ -51,15 +54,23 @@ export default function DashboardLayout({ children }) {
 
                     <Link href={`/dashboard/orders?email=${user?.email}`}>
                         {
-                            router.asPath === `/dashboard/orders?email=${user?.email}` ? <BsFillCartCheckFill fontSize={24} color={'#00FF00'}>
-                            </BsFillCartCheckFill> : <BsFillCartCheckFill fontSize={24} color={'#ffffff'}>
-                            </BsFillCartCheckFill>
+                            router.asPath === `/dashboard/orders?email=${user?.email}`
+                                ? <div className='bg-white items-center flex gap-1 px-4 py-2 rounded-full'>
+                                    <span className=' text-xs text-primary_color'>Orders</span>
+                                    <BsFillCartCheckFill fontSize={16} color={'#7E62C1'}>
+                                    </BsFillCartCheckFill>
+                                </div>
+                                : <BsFillCartCheckFill fontSize={24} color={'#ffffff'}>
+                                </BsFillCartCheckFill>
                         }
 
                     </Link>
                     <Link href={'/dashboard/profile'} className='cursor-pointer'>
                         {
-                            router.asPath === '/dashboard/profile' ? <CgProfile fontSize={24} color={'#00FF00'}></CgProfile> : <CgProfile fontSize={24} color={'#ffffff'}></CgProfile>
+                            router.asPath === '/dashboard/profile' ? <div className='bg-white items-center flex gap-1 px-4 py-2 rounded-full'>
+                                <span className=' text-xs text-primary_color'>Profile</span>
+                                <CgProfile fontSize={16} color={'#7E62C1'}></CgProfile>
+                            </div> : <CgProfile fontSize={24} color={'#ffffff'}></CgProfile>
                         }
 
                     </Link>
