@@ -4,14 +4,14 @@ import subscribe from './subscribe.png';
 
 const NewsLetter = () => {
     return (
-        <section className='container mx-auto max-w-screen-xl px-2 md:px-4 xl:px-0 mt-10'>
+        <section className='container mx-auto max-w-screen-xl px-2 md:px-4 xl:px-0 my-20'>
             <div className='md:flex items-center justify-center mx-auto'>
-                <div className='max-w-xs hidden md:block'>
-                    <Image src={subscribe} alt='subscribe'>
+                <div className='max-w-sm hidden md:block'>
+                    <Image src={subscribe} width={400} h={200} alt='subscribe'>
                     </Image>
                 </div>
                 <div className="max-w-md mx-auto md:mx-0">
-                    <strong className="block text-center text-xl font-medium md:text-2xl">
+                    <strong className="block text-center font-bold text-3xl text-primary_color">
                         Subscribe to our Newsletter
                     </strong>
                     <form className="mt-6">
