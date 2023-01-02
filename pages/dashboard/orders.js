@@ -5,7 +5,7 @@ import { getOrders } from '../api/util/getDataFromDB'
 export default function Orders({ orders }) {
     console.log(orders)
     return (
-        <div className=' min-h-screen mx-8 min-w-[450px] '>
+        <div className=' md:min-h-screen mx-8  '>
             <div className=" p-2 mx-auto sm:p-4  overflow-x-scroll ">
                 <h2 className="mb-4 text-2xl font-semibold ">Orders</h2>
 

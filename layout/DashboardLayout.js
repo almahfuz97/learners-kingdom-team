@@ -46,7 +46,6 @@ export default function DashboardLayout({ children }) {
                                 ? <BsBook fontSize={24} color={'#00FF00'}></BsBook>
                                 : <BsBook fontSize={24} color={'#ffffff'}></BsBook>
 
-
                         }
                     </Link>
 
@@ -67,7 +66,7 @@ export default function DashboardLayout({ children }) {
 
                 </div>
             </div>
-            <div className='width1  bg-secondary_color/0 border-r-2 shadow'>
+            <div className='width1  bg-secondary_color/0 border-r-2 shadow hidden md:block'>
 
                 <div className="h-full p-3 space-y-2 w-60">{/* <Link href={'/dashboard/profile'} className={`gap-2 flex px-8 py-4 items-center ${router.asPath === '/dashboard/profile' && 'bg-primary_color text-white'}`}>
                     <img src="/avatar.png" alt="" />
