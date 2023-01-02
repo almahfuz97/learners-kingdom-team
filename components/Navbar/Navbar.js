@@ -28,7 +28,7 @@ export default function Navbar() {
                             loading ? <Loading></Loading>
                                 : user?._id ?
                                     <>
-                                        <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
+                                        <Link className='hover:text-primary_color' href='/dashboard/profile' > <li>Dashboard</li></Link>
 
                                         <Link className='hover:text-primary_color' href='/cart'><li className="relative"> <GiShoppingCart className=' font-bold text-red-100' fontSize={24} fontStyle={900} /><span className="w-4 h-4 flex justify-center items-center absolute -top-1 -right-2 bg-green-600 text-white rounded-full text-xs font-bold">{cart?.length}</span></li></Link>
 

@@ -12,7 +12,16 @@ export default function App({ Component, pageProps }) {
       <AuthProvider>
         <CartProvider>
           <MainLayout>
-            <Component {...pageProps} />
+            {
+              Component.PageLayout ? (
+                <Component.PageLayout>
+                  <Component {...pageProps} />
+                </Component.PageLayout>
+              ) : (
+                <Component {...pageProps} />
+              )
+            }
+
           </MainLayout>
         </CartProvider>
       </AuthProvider>
