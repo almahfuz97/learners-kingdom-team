@@ -56,15 +56,15 @@ export default function Navbar() {
 
                     <div className={`absolute bg-secondary_color md:hidden mt-3 z-50 p-8 uppercase font-bold ${toggle ? ' right-0 top-20  h-screen  duration-500' : 'duration-500 -top-96  right-0'}`}>
                         <ul className=' flex flex-col gap-4'>
-                            <Link className=' hover:text-primary_color' href="#"><li>Home</li></Link>
-                            <Link className=' hover:text-primary_color' href="/about"><li>About Us</li></Link>
+                            <Link onClick={handleToggle} className=' hover:text-primary_color' href="/"><li>Home</li></Link>
+                            <Link onClick={handleToggle} className=' hover:text-primary_color' href="/about"><li>About Us</li></Link>
                             {
                                 loading ? <Loading></Loading>
                                     : user?._id ?
                                         <>
-                                            <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
+                                            <Link onClick={handleToggle} className='hover:text-primary_color' href='/dashboard/profile' > <li>Dashboard</li></Link>
 
-                                            <Link className='hover:text-primary_color' href='/cart'>
+                                            <Link onClick={handleToggle} className='hover:text-primary_color' href='/cart'>
                                                 <li className="relative inline-block">
                                                     <img className='w-6' src="/cart.svg" alt="" />
                                                     <span className="w-4 h-4 flex justify-center items-center absolute -top-1 -right-2 bg-green-600 text-white rounded-full text-xs font-bold">{cart?.length}</span>

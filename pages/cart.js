@@ -42,7 +42,7 @@ const Cart = () => {
     }
 
     return (
-        <div className="max-w-screen-lg mx-auto mt-8">
+        <div className="max-w-screen-lg mx-4 md:mx-auto mt-8">
             <h2 className="text-2xl font-semibold mb-4">Your Book Cart</h2>
             <div className="lg:flex gap-6 relative items-start">
                 <div className="flex-1 border border-gray-400 p-4 md:p-6 rounded-lg shadow-sm shadow-slate-400">
@@ -54,7 +54,7 @@ const Cart = () => {
                     }
                 </div>
 
-                <aside className="w-full lg:w-[280px] border border-gray-400 p-6 sticky top-6 rounded-lg shadow-sm shadow-slate-200">
+                <aside className="w-full lg:w-[280px] border mt-4 border-gray-400 p-6 sticky top-6 rounded-lg shadow-sm shadow-slate-200">
                     <div>
                         <div className="text-right mb-8 text-lg max-w-xs ml-auto">
                             <p className="flex justify-between">Total amount:<span className="font-semibold">${TotalPrice}</span></p>
