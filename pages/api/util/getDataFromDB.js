@@ -36,14 +36,14 @@ export async function getMostRatedBooks() {
     const client = await clientPromise;
     const db = await client.db("learners-kingdom");
     const query = {}
-    const result = await db.collection('books').find(query).sort({ rating: -1 }).limit(6).toArray();
+    const result = await db.collection('books').find(query).sort({ rating: -1 }).limit(4).toArray();
     return result
 }
 export async function getMostSoldBooks() {
     const client = await clientPromise;
     const db = await client.db("learners-kingdom");
     const query = {}
-    const result = await db.collection('books').find(query).sort({ totalSold: -1 }).limit(6).toArray();
+    const result = await db.collection('books').find(query).sort({ totalSold: -1 }).limit(4).toArray();
     return result
 }
 export async function getSingleBook(id) {
