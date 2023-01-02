@@ -3,9 +3,11 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthProvider';
 import { CartContext } from "../../context/CartProvider";
 import Loading from '../Loader/Loading';
+import { GiShoppingCart } from 'react-icons/gi'
 
 export default function Navbar() {
     const [toggle, setToggle] = useState(false);
+    const [avatarHover, setAvatarHover] = useState(false);
     const { user, logout, loading } = useContext(AuthContext);
     const { cart } = useContext(CartContext);
 
@@ -27,9 +29,18 @@ export default function Navbar() {
                                 : user?._id ?
                                     <>
                                         <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
-                                        <li>{user.name}</li>
-                                        <Link className='hover:text-primary_color' href='/cart'><li className="relative"><img className='w-6' src="/cart.svg" alt="" /><span className="w-4 h-4 flex justify-center items-center absolute -top-1 -right-2 bg-green-600 text-white rounded-full text-xs font-bold">{cart?.length}</span></li></Link>
-                                        <li className=' hover:text-primary_color cursor-pointer' onClick={() => logout()}>Logout</li>
+
+                                        <Link className='hover:text-primary_color' href='/cart'><li className="relative"> <GiShoppingCart className=' font-bold text-red-100' fontSize={24} fontStyle={900} /><span className="w-4 h-4 flex justify-center items-center absolute -top-1 -right-2 bg-green-600 text-white rounded-full text-xs font-bold">{cart?.length}</span></li></Link>
+
+                                        <div onMouseLeave={() => setAvatarHover(false)} onMouseOver={() => setAvatarHover(true)} className='relative'>
+                                            {/* <li>{user.name}</li> */}
+                                            <img src="/avatar.png" alt="" className=' rounded-full w-8 h-8 cursor-pointer' />
+                                            <div className={`${avatarHover ? 'block' : 'hidden'} bg-primary_color p-4 z-10 space-y-2 absolute right-0 rounded-lg shadow`}>
+                                                <li>{user?.name}</li>
+                                                <li className=' hover:text-slate-700 cursor-pointer' onClick={() => logout()}>Logout</li>
+                                            </div>
+                                        </div>
+
                                     </>
                                     : <Link className=' hover:text-primary_color' href="/login"><li>Login</li></Link>
 
@@ -46,7 +57,28 @@ export default function Navbar() {
                         <ul className=' flex flex-col gap-4'>
                             <Link className=' hover:text-primary_color' href="#"><li>Home</li></Link>
                             <Link className=' hover:text-primary_color' href="/about"><li>About Us</li></Link>
-                            <Link className=' hover:text-primary_color' href="/register"><li>Sign Up</li></Link>
+                            {
+                                loading ? <Loading></Loading>
+                                    : user?._id ?
+                                        <>
+                                            <Link className='hover:text-primary_color' href='/profile' > <li>Dashboard</li></Link>
+
+                                            <Link className='hover:text-primary_color' href='/cart'>
+                                                <li className="relative inline-block">
+                                                    <img className='w-6' src="/cart.svg" alt="" />
+                                                    <span className="w-4 h-4 flex justify-center items-center absolute -top-1 -right-2 bg-green-600 text-white rounded-full text-xs font-bold">{cart?.length}</span>
+                                                </li>
+                                            </Link>
+
+                                            <li>{user?.name}</li>
+                                            <li className=' hover:text-slate-700 cursor-pointer' onClick={() => logout()}>Logout</li>
+
+
+
+                                        </>
+                                        : <Link className=' hover:text-primary_color' href="/login"><li>Login</li></Link>
+
+                            }
                         </ul>
                     </div>
                 </div>
