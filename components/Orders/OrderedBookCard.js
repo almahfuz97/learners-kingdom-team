@@ -40,14 +40,12 @@ export default function OrderedBookCard({ book }) {
                 <p className="text-base my-2 opacity-50 break-all">
                     {book.description.slice(0, 100)}
                 </p>
-
-                <h3 className="text-primary_color font-medium text-lg my-1">
-                    Price: <span className="text-rose-600 font-bold text-lg">${book.price}</span>
-                </h3>
             </div>
             <div onClick={() => setModalToggle(prev => !prev)} id="actions" className="mt-4 flex text-white text-center font-medium gap-4">
-                <div className="flex-1 bg-secondary_color hover:bg-secondary_color/80 px-3 py-2 rounded-md "><button>Read</button></div>
-
+                <div className="flex-1 bg-secondary_color hover:bg-secondary_color/80 px-3 py-2 rounded-md "><button>
+                    Read
+                </button>
+                </div>
             </div>
         </div>
     )

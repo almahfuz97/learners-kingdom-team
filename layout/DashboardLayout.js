@@ -17,7 +17,7 @@ export default function DashboardLayout({ children }) {
 
     return (
 
-        <div className='flex   '>
+        <div className='flex gap-6   '>
             <style jsx>
                 {
                     `
