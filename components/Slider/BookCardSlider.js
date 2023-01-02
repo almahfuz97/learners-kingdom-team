@@ -2,16 +2,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import RecentlyAddedCard from "../RecentlyAdded/RecentlyAddedCard";
-import ReviewCard from "../Review/ReviewCard";
+import { FaAngleLeft, FaAngleRight, IconName } from "react-icons/fa";
 
-export default function CardSlider({ data }) {
-    console.log(data)
+export default function BookCardSlider({ data }) {
     let slider;
     const settings = {
         dots: false,
         infinite: true,
         speed: 1000,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
         initialSlide: 3,
@@ -26,7 +25,7 @@ export default function CardSlider({ data }) {
                 }
             },
             {
-                breakpoint: 1023,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
                     // slidesToScroll: 2,
@@ -35,7 +34,7 @@ export default function CardSlider({ data }) {
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 576,
                 settings: {
                     slidesToShow: 1,
                     // slidesToScroll: 1,
@@ -45,21 +44,19 @@ export default function CardSlider({ data }) {
         ]
     };
     return (
-        <div className=" relative" >
+        <div className="relative px-10 md:px-14 rounded-xl" >
 
-            <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color absolute top-1/2 z-10 -translate-x-8" onClick={() => slider.slickPrev()}>
-
-                <img src="/left-arrow.svg" alt="book" className="w-8" />
+            <button className="button mx-2 text-2xl md:text-3xl p-1 md:p-2 rounded-full bg-primary_color text-white absolute top-1/2 z-10 left-0" onClick={() => slider.slickPrev()}>
+                <FaAngleLeft className="pr-1"></FaAngleLeft>
             </button>
-            <button className="button mx-2 text-2xl p-2 rounded-full bg-secondary_color  absolute top-1/2 z-10 right-0 translate-x-8" onClick={() => slider.slickNext()}>
-                <img src="/right-arrow.svg" alt="book" className="w-8" />
-
+            <button className="button mx-2 text-2xl md:text-3xl p-1 md:p-2 rounded-full bg-primary_color text-white absolute top-1/2 z-10 right-0" onClick={() => slider.slickNext()}>
+                <FaAngleRight className="pl-1"></FaAngleRight>
             </button>
             {
 
                 <Slider ref={c => (slider = c)} {...settings}>
                     {
-                        data?.map((d, index) => <ReviewCard key={index + 'r'} review={d}></ReviewCard>)
+                        data?.map((d, index) => <RecentlyAddedCard data={d} key={index}></RecentlyAddedCard>)
                     }
                 </Slider>
             }
