@@ -14,7 +14,6 @@ const Dashboard = ({ children }) => {
 
     console.log(router)
     if (loading) return <div><Loading></Loading></div>
-    setLayout(user);
     if (!user?.email) return <><p className=" text-center mt-6 font-bold uppercase">You are not logged in. Please <Link href={'/login'} className=' underline text-green-400'>Login</Link></p></>
 
     return (

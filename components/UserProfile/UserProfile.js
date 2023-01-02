@@ -10,9 +10,9 @@ const UserProfile = () => {
     if (loading) return <div><Loading /></div>
     return (
         <div>
-            <DashboardLayout>
+            {/* <DashboardLayout>
                 <WhoWeAre />
-            </DashboardLayout>
+            </DashboardLayout> */}
         </div>
     );
 };

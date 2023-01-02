@@ -8,6 +8,7 @@ export default function DashboardLayout({ children }) {
 
     const { loading, user } = useContext(AuthContext);
     const router = useRouter();
+    console.log(children)
 
     console.log(router)
     if (loading) return <div><Loading></Loading></div>
@@ -15,7 +16,7 @@ export default function DashboardLayout({ children }) {
     if (!user?.email) return <div className='h-screen'><div className=" text-center mt-6 font-bold uppercase ">You are not logged in. Please <Link href={'/login'} className='  underline text-green-400'>Login</Link></div></div>
 
     return (
-        <div className=' grid grid-cols-12  '>
+        <div className='grid grid-cols-12  '>
             <div className=' col-span-3 bg-secondary_color/0 border-r-2'>
                 <Link href={'/dashboard/profile'} className={`gap-2 flex px-8 py-4 items-center ${router.asPath === '/dashboard/profile' && 'bg-primary_color text-white'}`}>
                     <img src="/avatar.png" alt="" />
@@ -34,6 +35,7 @@ export default function DashboardLayout({ children }) {
                     <h3 className=' font-bold uppercase'>Purchased Books</h3>
                 </div>
             </div>
+
             <div className=' col-span-9'>
                 {children}
             </div>
