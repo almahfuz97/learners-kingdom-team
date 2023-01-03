@@ -3,6 +3,7 @@ import CartProvider from '../context/CartProvider'
 import MainLayout from '../layout/MainLayout'
 import '../styles/globals.css'
 import dynamic from 'next/dynamic'
+import { Toaster } from 'react-hot-toast'
 
 // const DynamicIndex = dynamic(() => import('../pages/index'))
 
@@ -25,6 +26,7 @@ export default function App({ Component, pageProps }) {
           </MainLayout>
         </CartProvider>
       </AuthProvider>
+      <Toaster></Toaster>
     </div>
   )
 }
