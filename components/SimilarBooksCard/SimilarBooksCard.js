@@ -14,11 +14,11 @@ const SimilarBooksCard = ({ book }) => {
     return (
         <div className="cursor-default">
             <div className="flex flex-col gap-1 rounded-md shadow-lg group">
-                <div className="overflow-hidden relative">
-                    <img src={book.picture} alt="" className="w-full h-72 object-cover rounded-t duration-300 group-hover:scale-110" />
+                <div className="overflow-hidden relative rounded-t-md">
+                    <img src={book.picture} alt="" className="w-full h-72 object-cover duration-300 group-hover:scale-110" />
                     <div className="absolute -bottom-10 group-hover:bottom-0 duration-300 bg-white w-full flex gap-0.5 text-2xl text-white">
-                        <Link href={`/book/${book._id},${book.categoryID}`} title="Details" className="p-2 w-full flex justify-center items-center bg-primary_color"><button className="flex justify-center items-center"><FaEye></FaEye></button></Link>
-                        <button onClick={() => handleAdd(book._id, book.price)} title="Add to cart" className="p-2 w-full flex justify-center items-center bg-primary_color"><FaCartPlus></FaCartPlus></button>
+                        <Link href={`/book/${book._id},${book.categoryID}`} title="Details" className="p-2 w-full flex justify-center items-center bg-primary_color hover:bg-secondary_color transition"><button className="flex justify-center items-center"><FaEye></FaEye></button></Link>
+                        <button onClick={() => handleAdd(book._id, book.price)} title="Add to cart" className="p-2 w-full flex justify-center items-center bg-primary_color hover:bg-secondary_color transition"><FaCartPlus></FaCartPlus></button>
                     </div>
                 </div>
                 <div className="flex flex-col gap-1 p-3 items-center text-center">
