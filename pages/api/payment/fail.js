@@ -11,10 +11,10 @@ export default async function handler(req, res) {
 
         if (result.deletedCount > 0) {
 
-            res.redirect(`${process.env.URL}/payment/fail`)
+            res.redirect(`/payment/fail`)
         }
         else {
-            res.redirect(`${process.env.URL}/payment/fail`)
+            res.redirect(`/payment/fail`)
         }
     }
 

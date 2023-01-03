@@ -18,7 +18,7 @@ export default function CartProvider({ children }) {
 
     useEffect(() => {
         if (token) {
-            fetch(`${process.env.URL}/api/cart/getCart?email=${user.email}`, {
+            fetch(`/api/cart/getCart?email=${user.email}`, {
                 headers: {
                     authorization: `bearer ${token}`
                 }
@@ -37,7 +37,7 @@ export default function CartProvider({ children }) {
                 cart
             }
             console.log('update cart')
-            fetch(`${process.env.URL}/api/cart/postCart`, {
+            fetch(`/api/cart/postCart`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json',

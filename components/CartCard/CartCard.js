@@ -6,7 +6,7 @@ const CartCard = ({ bookId, handleDelete }) => {
 
     const [book, setBook] = useState({})
     useEffect(() => {
-        fetch(`${process.env.URL}/api/books/${bookId}`)
+        fetch(`/api/books/${bookId}`)
             .then(res => res.json())
             .then(data => setBook(data))
             .catch(error => console.log(error))

@@ -35,9 +35,9 @@ export default async function handler(req, res) {
             total_amount: price,
             currency: 'USD',
             tran_id: transactionId, // use unique tran_id for each api call
-            success_url: `${process.env.URL}/api/payment/success?transactionId=${transactionId}&price=${price}`,
-            fail_url: `${process.env.URL}/api/payment/fail?transactionId=${transactionId}`,
-            cancel_url: `${process.env.URL}/api/payment/cancel`,
+            success_url: `/api/payment/success?transactionId=${transactionId}&price=${price}`,
+            fail_url: `/api/payment/fail?transactionId=${transactionId}`,
+            cancel_url: `/api/payment/cancel`,
             ipn_url: 'http://localhost:3030/ipn',
             shipping_method: 'Courier',
             product_name: 'Books',

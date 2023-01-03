@@ -19,7 +19,7 @@ export default function Register() {
 	const onSubmit = async (data) => {
 		setIsLoading(true);
 		console.log(data);
-		const res = await fetch(`${process.env.URL}/api/user/signup`, {
+		const res = await fetch(`/api/user/signup`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',

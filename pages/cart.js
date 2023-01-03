@@ -25,7 +25,7 @@ const Cart = () => {
             cus_phone: user.phone,
         }
 
-        fetch(`${process.env.URL}/api/payment/orders`, {
+        fetch(`/api/payment/orders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

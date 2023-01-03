@@ -19,7 +19,7 @@ export default function Login() {
         setIsLoading(true)
         setError('')
 
-        const res = await fetch(`${process.env.URL}/api/user/login`, {
+        const res = await fetch(`/api/user/login`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

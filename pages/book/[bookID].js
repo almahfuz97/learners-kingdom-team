@@ -49,7 +49,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 			createdAt: Date.now(),
 		}
 
-		fetch(`${process.env.URL}/api/books/booksReview`, {
+		fetch(`/api/books/booksReview`, {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'

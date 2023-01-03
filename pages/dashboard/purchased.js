@@ -9,7 +9,7 @@ export default function Purchased() {
 
     console.log(books)
     useEffect(() => {
-        fetch(`${process.env.URL}/api/orders/orders?email=${user?.email}`)
+        fetch(`/api/orders/orders?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)

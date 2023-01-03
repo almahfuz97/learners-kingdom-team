@@ -22,7 +22,7 @@ export default function AuthProvider({ children }) {
     useEffect(() => {
         if (token) {
             setLoading(true)
-            fetch(`${process.env.URL}/api/user/userInfo`, {
+            fetch(`/api/user/userInfo`, {
                 headers: {
                     authorization: `bearer ${token}`
                 }
