@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { AuthContext } from '../context/AuthProvider';
 
 export default function Register() {
@@ -30,7 +31,7 @@ export default function Register() {
 		if (result.success) {
 			// localStorage.setItem('lk-token', result.token);
 			setError('');
-			alert('Registration Successful.');
+			toast.success('Registration Successful.');
 			// setUserEmail(data.email);
 			router.push('/login');
 		} else {

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { FaStar } from 'react-icons/fa';
 import BookReveiwsContainer from '../../components/BookReviews/BookReveiwsContainer';
 import Loading from '../../components/Loader/Loading';
@@ -15,22 +16,17 @@ import { getCategoryWiseBooks, getSingleBook, getSpecificBookReviews } from '../
 
 const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
-	const [bookReviews2, setBookReviews2] = useState(bookReviews);
-	const [id, setId] = useState(book._id);
+	const [bookReviewsData, setBookReviewsData] = useState([]);
 	const { cart, setCart } = useContext(CartContext);
 	const [modalToggle, setModalToggle] = useState(false);
-
 	const { register, handleSubmit, formState: { errors }, reset } = useForm();
 	const { user, loading } = useContext(AuthContext);
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const refresh = async (id) => {
-		const res = await fetch(`${process.env.URL}/api/books/booksReview?bookID=${id}`)
-		const data = await res.json();
-		console.log(data)
-		setBookReviews2(data);
-	}
+	useEffect(() => {
+		setBookReviewsData(bookReviews)
+	}, [book._id])
 
 	const handleClick = e => {
 		console.log(e.target.id)
@@ -49,11 +45,9 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 			categoryID: book.categoryID,
 			bookName: book.bookName,
 			bookAuthor: book.authorName,
-			userImg: 'https://i.ibb.co/H2dyBxm/leo.jpg',
+			userImg: `https://avatars.dicebear.com/v2/avataaars/${user.name}.svg?options[mood][]=happy`,
 			createdAt: Date.now(),
 		}
-
-		console.log(reviewData)
 
 		fetch(`${process.env.URL}/api/books/booksReview`, {
 			method: 'POST',
@@ -64,16 +58,12 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 		})
 			.then(res => res.json())
 			.then(data => {
-				console.log(data)
 				if (data.insertedId) {
-					// alert('Review added successfully!')
-					setId(book._id)
-					refresh(book._id);
+					toast.success('Review added successfully!')
+					setBookReviewsData([reviewData, ...bookReviewsData])
 				}
 				setIsLoading(false)
 				reset();
-
-				// router.replace(router.asPath)
 			})
 			.catch(err => {
 				console.log(err.message)
@@ -84,12 +74,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 	};
 
 	const handleAdd = (id, price) => {
-		if (user?.email) {
-			useAddCart(cart, setCart, id, price);
-		}
-		else {
-			alert('Login first')
-		}
+		useAddCart(user, cart, setCart, id, price);
 	}
 
 	return (
@@ -99,14 +84,14 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 			</div>
 
 			<div className="md:flex gap-6">
-				<div className="w-full sm:w-2/5 mx-auto p-6 border-2 border-primary_color/30 rounded-lg mb-4 md:mb-0">
+				<div className="w-full sm:w-2/5 mx-auto p-6 border-2 border-primary_color/40 rounded-lg mb-4 md:mb-0">
 					<img
 						src={book?.picture}
 						alt=""
 						className="mx-auto w-4/5 sm:w-full h-full object-cover"
 					/>
 				</div>
-				<div className="p-6 border-2 border-primary_color/30 rounded-lg flex-1">
+				<div className="p-6 border-2 border-primary_color/40 rounded-lg flex-1">
 					<h1 className="text-3xl font-bold mb-2">{book.bookName}</h1>
 					<div className="flex flex-wrap items-center gap-4 sm:gap-12">
 						<p><span className="text-gray-600 font-medium">Author: </span>{book.authorName}</p>
@@ -141,7 +126,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 				</div>
 			</div>
 
-			<div className="p-6 border-2 border-primary_color/30 rounded-lg mt-12">
+			<div className="p-6 border-2 border-primary_color/40 rounded-lg mt-12">
 				{
 					(!loading && !user?.email) ?
 						<div className='flex justify-center text-2xl font-bold text-center'>
@@ -149,14 +134,15 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 						</div>
 						:
 						<form onSubmit={handleSubmit(onSubmit)}>
-							<h2 className="text-2xl font-bold mb-6">Place a review</h2>
+							<h2 className="text-2xl font-bold mb-6">Write your review</h2>
 							<textarea
 								name="review"
 								{...register('reviewContent', { required: true })}
 								id="review"
 								cols="30"
 								rows="2"
-								className="w-full border-primary_color border-2 rounded-lg p-3 focus:outline-none"
+								placeholder='Write review...'
+								className="w-full  border-primary_color/60 focus:border-primary_color border-2 rounded-lg p-3 focus:outline-none"
 							></textarea>
 							{
 								isLoading ?
@@ -168,16 +154,16 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 									: <input
 										type="submit"
 										value="Post Review"
-										className="font-medium cursor-pointer text-white bg-primary_color px-2 py-1 rounded-lg block mx-auto mt-2"
+										className="font-medium cursor-pointer text-white bg-primary_color hover:bg-secondary_color px-4 py-2 rounded-lg block mx-auto mt-4"
 									/>
 							}
 						</form>
 				}
 			</div>
 
-			<BookReveiwsContainer bookReviews={bookReviews2}></BookReveiwsContainer>
+			<BookReveiwsContainer bookReviews={bookReviewsData}></BookReveiwsContainer>
 
-			<div className="p-6 border-2 border-primary_color/30 rounded-lg mt-8">
+			<div className="p-6 border-2 border-primary_color/40 rounded-lg mt-8">
 				<h2 className="text-2xl font-bold mb-6">Similar books</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 					{singleCategory

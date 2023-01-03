@@ -11,7 +11,7 @@ export default function Profile() {
                 <h1 className=' font-bold text-2xl uppercase text-primary_color text-center '>Your Profile</h1>
                 <div className='flex flex-col gap-6 '>
                     <div className='md:border mt-4 p-4 min-w-[400px] rounded-lg md:shadow-lg flex flex-col justify-center items-center'>
-                        <img src="https://avatars.dicebear.com/v2/avataaars/Abdullah.svg?options[mood][]=happy" alt="" className=' w-28 h-28 bg-primary_color rounded-full mt-8 ml-2' />
+                        <img src={`https://avatars.dicebear.com/v2/avataaars/${user.name}.svg?options[mood][]=happy`} alt="" className=' w-28 h-28 bg-primary_color rounded-full mt-8 ml-2' />
                         <button className=' p-3 text-white rounded-lg bg-primary_color mt-4 ml-2'>Edit Profile</button>
                         <div className='mt-8'>
                             <div className=' grid grid-cols-2 md:grid-cols-4 md:flex-row gap-4 text-slate-900 mb-2'>
@@ -22,7 +22,6 @@ export default function Profile() {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

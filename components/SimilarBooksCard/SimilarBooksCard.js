@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { FaCartPlus, FaEye, FaStar } from "react-icons/fa";
+import { AuthContext } from "../../context/AuthProvider";
 import { CartContext } from "../../context/CartProvider";
 import useAddCart from "../../utility/useAddCart";
 
 const SimilarBooksCard = ({ book }) => {
-
     const { cart, setCart } = useContext(CartContext);
+    const { user } = useContext(AuthContext);
+
     const handleAdd = (id, price) => {
-        useAddCart(cart, setCart, id, price);
+        useAddCart(user, cart, setCart, id, price);
     }
 
     return (
