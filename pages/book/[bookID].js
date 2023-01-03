@@ -67,7 +67,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 				if (data.insertedId) {
 					// alert('Review added successfully!')
 					setId(book._id)
-					refresh();
+					refresh(book._id);
 				}
 				setIsLoading(false)
 				reset();
@@ -83,7 +83,12 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 	};
 
 	const handleAdd = (id, price) => {
-		useAddCart(cart, setCart, id, price);
+		if (user?.email) {
+			useAddCart(cart, setCart, id, price);
+		}
+		else {
+			alert('Login first')
+		}
 	}
 
 	return (
