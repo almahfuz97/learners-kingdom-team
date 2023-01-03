@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaStar } from 'react-icons/fa';
 import BookReveiwsContainer from '../../components/BookReviews/BookReveiwsContainer';
 import Loading from '../../components/Loader/Loading';
 import ReadFewPages from '../../components/Modals/ReadFewPages/ReadFewPages';
@@ -87,34 +88,24 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 	}
 
 	return (
-		<section className=" max-w-screen-lg mx-auto  mt-10 relative">
+		<section className="max-w-screen-lg lg:mx-auto mt-10 mx-4 relative">
 			<div id='modal-container' onClick={handleClick} className={`z-10 opacity-95  left-0 top-0 w-full h-full overflow-auto bg-stone-700 ${modalToggle ? 'fixed' : 'hidden'}`}>
 				<ReadFewPages setModalToggle={setModalToggle} book={book} />
 			</div>
 
 			<div className="md:flex gap-6">
-				<div className="max-w-xs mx-auto sm:max-w-none p-6 border border-primary_color rounded-lg mb-4 md:mb-0">
+				<div className="w-full sm:w-2/5 mx-auto p-6 border-2 border-primary_color/30 rounded-lg mb-4 md:mb-0">
 					<img
 						src={book?.picture}
 						alt=""
-						className="mx-auto w-full sm:max-w-xs md:max-w-md"
+						className="mx-auto w-4/5 sm:w-full h-full object-cover"
 					/>
 				</div>
-				<div className="p-6 border border-primary_color rounded-lg flex-1">
+				<div className="p-6 border-2 border-primary_color/30 rounded-lg flex-1">
 					<h1 className="text-3xl font-bold mb-2">{book.bookName}</h1>
-					<div className="flex gap-12">
-						<p>
-							<span className="text-gray-600 font-medium">
-								Author:{' '}
-							</span>
-							{book.authorName}
-						</p>
-						<p className="text-sm">
-							Rating:{' '}
-							{[...Array(parseInt(book?.rating))].map(
-								(_, i) => '⭐ '
-							)}
-						</p>
+					<div className="flex flex-wrap items-center gap-4 sm:gap-12">
+						<p><span className="text-gray-600 font-medium">Author: </span>{book.authorName}</p>
+						<p className="flex items-center gap-1"><span className="text-gray-600 font-medium">Rating: </span>{[...Array(parseInt(book?.rating))].map((_, i) => <FaStar key={i} className="text-amber-500"></FaStar>)}</p>
 					</div>
 					<h4 className="text-xl font-medium my-4">
 						<span className="text-gray-600">Price: </span>
@@ -127,10 +118,10 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 						{book.description}
 					</p>
 					<div className=' flex gap-6 md:flex-row flex-col my-6'>
-						<button onClick={() => handleAdd(book._id, book.price)} className="text-white bg-primary_color hover:bg-secondary_color px-8 font-semibold rounded py-3 ">
+						<button onClick={() => handleAdd(book._id, book.price)} className="text-white bg-primary_color hover:bg-secondary_color px-8 font-semibold rounded py-3 transition">
 							Add To Cart
 						</button>
-						<button onClick={() => setModalToggle(prev => !prev)} className="text-primary_color border-2 border-primary_color hover:bg-secondary_color px-8 py-3 font-semibold rounded ">
+						<button onClick={() => setModalToggle(prev => !prev)} className="text-primary_color border-2 border-primary_color hover:bg-primary_color hover:text-white px-8 py-3 font-semibold rounded transition">
 							Read few Pages
 						</button>
 
@@ -145,13 +136,11 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 				</div>
 			</div>
 
-			<div className="p-6 border border-primary_color rounded-lg mt-8">
+			<div className="p-6 border-2 border-primary_color/30 rounded-lg mt-12">
 				{
 					(!loading && !user?.email) ?
-						<div className=' flex justify-center'>
-							<Link href={{ pathname: '/login', query: { from: router.asPath } }} className="text-2xl w-full font-bold mb-6 text-secondary_color bg-neutral px-2 py-2 rounded-3xl text-center cursor-pointer hover:text-green-400">
-								Please Login to provide a review.
-							</Link>
+						<div className='flex justify-center text-2xl font-bold text-center'>
+							<p>Please <Link href={{ pathname: '/login', query: { from: router.asPath } }} className="text-primary_color hover:text-secondary_color">Login</Link> to Review the Book</p>
 						</div>
 						:
 						<form onSubmit={handleSubmit(onSubmit)}>
@@ -183,7 +172,7 @@ const BookDetails = ({ book, bookReviews, singleCategory }) => {
 
 			<BookReveiwsContainer bookReviews={bookReviews2}></BookReveiwsContainer>
 
-			<div className="p-6 border border-primary_color rounded-lg mt-8">
+			<div className="p-6 border-2 border-primary_color/30 rounded-lg mt-8">
 				<h2 className="text-2xl font-bold mb-6">Similar books</h2>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
 					{singleCategory
