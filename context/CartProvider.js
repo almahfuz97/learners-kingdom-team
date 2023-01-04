@@ -9,6 +9,7 @@ export default function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
     const { user } = useContext(AuthContext);
     const [token, setToken] = useState('');
+    const [cartLoading, setCartLoading] = useState(false);
 
     useEffect(() => {
         if (user?.email) {
@@ -18,13 +19,17 @@ export default function CartProvider({ children }) {
 
     useEffect(() => {
         if (token) {
+            setCartLoading(true)
             fetch(`/api/cart/getCart?email=${user.email}`, {
                 headers: {
                     authorization: `bearer ${token}`
                 }
             })
                 .then(res => res.json())
-                .then(data => setCart(data.result.cart))
+                .then(data => {
+                    setCart(data.result.cart)
+                    setCartLoading(false)
+                })
                 .catch(error => console.log(error))
         }
     }, [token])
@@ -45,14 +50,15 @@ export default function CartProvider({ children }) {
                 body: JSON.stringify(cartData),
             })
                 .then(res => res.json())
-                .then(data => console.log(data))
+                .then(data => console.log("cart data"))
                 .catch(error => console.log(error))
         }
     }, [cart.length])
 
     const cartInfo = {
         cart,
-        setCart
+        setCart,
+        cartLoading
     }
 
     return (
